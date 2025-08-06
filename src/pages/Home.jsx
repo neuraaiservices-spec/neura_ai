@@ -104,7 +104,7 @@ export default function Home() {
         {/* Right Info Text */}
         <motion.div
           initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          // animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.6 }}
           style={{ letterSpacing: "2px" }}
           className='lg:w-1/3 relative order-2 md:order-3'
