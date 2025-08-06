@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+build/
+.vite/
+.next/
+out/
+
+# Env and config
+.env
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# IDEs & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Coverage/testing
+coverage/
+*.tsbuildinfo
