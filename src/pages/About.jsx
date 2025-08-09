@@ -30,7 +30,7 @@ export default function About() {
           </motion.h2>
 
           <motion.h2 variants={fadeUp} className='text-xl md:text-2xl font-bold '>
-            To make healthcare accessible to everyone—regardless of geography, gender, or income.
+            To make healthcare accessible to everyone—regardless of their economic background.
           </motion.h2>
 
           <div className='flex flex-col gap-4 text-lg '>
@@ -82,3 +82,4 @@ export default function About() {
     </section>
   );
 }
+
