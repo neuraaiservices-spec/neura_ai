@@ -207,16 +207,16 @@ export default function Contact() {
             <div className="flex flex-col gap-3">
               <p className="lg:text-2xl text-lg font-light">Email</p>
               <a
-                href="mailto:neuraaiservices@gmail.com"
+                href="mailto:info@neuraaffordableintelligence.com"
                 className="text-sm lg:text-xl font-semibold hover:text-[#FEB763] transition-all duration-500"
               >
-                neuraaiservices@gmail.com
+                info@neuraaffordableintelligence.com
               </a>
             </div>
           </div>
 
           {/* Phone */}
-          <div className="text-white flex items-center justify-center gap-7">
+          {/* <div className="text-white flex items-center justify-center gap-7">
             <span className="text-3xl bg-gray-800 p-5 rounded-full">
               <MdOutlinePhone aria-hidden="true" />
             </span>
@@ -229,7 +229,7 @@ export default function Contact() {
                 +91 87781 71529
               </a>
             </div>
-          </div>
+          </div> */}
 
         </motion.div>
       </div>
