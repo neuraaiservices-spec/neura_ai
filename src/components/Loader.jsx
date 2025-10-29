@@ -136,17 +136,20 @@
 
 
 import React from 'react';
-import logo from '../assets/Logo.png';
+import logo from '../assets/Logo.png'; // replace with your uploaded logo if renamed
 
 export default function Loader() {
   return (
-    <div className="flex flex-col gap-5 justify-center items-center min-h-screen bg-black">
+    <div className="flex flex-col w-full gap-5 justify-center items-center min-h-screen bg-gradient-to-br from-[#020617] via-[#0A192F] to-[#112240]">
       <img
         src={logo}
-        alt="Loading..."
-        className="h-28 w-28 animate-loader"
+        alt="Neura AI Logo"
+        className="h-28 w-28 animate-pulse"
       />
-      <h2 className='text-white font-Afacad text-5xl md:text-6xl animate-fade-in tracking-widest'>NEURA AI</h2>
+      <h2 className="text-white font-Afacad text-5xl md:text-6xl tracking-widest animate-fade-in">
+        NEURA AI
+      </h2>
     </div>
   );
 }
+

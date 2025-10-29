@@ -15,7 +15,7 @@ export default function Main() {
   return (
     <main className="min-h-screen">
       {loading ? (
-        <div className="w-full h-screen flex justify-center items-center bg-black">
+        <div className="w-full h-screen flex justify-center items-center">
           <Loader />
         </div>
       ) : (
