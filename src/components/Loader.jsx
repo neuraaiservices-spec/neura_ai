@@ -146,10 +146,11 @@ export default function Loader() {
         alt="Neura AI Logo"
         className="h-28 w-28 animate-pulse"
       />
-      <h2 className="text-white font-Afacad text-5xl md:text-6xl tracking-widest animate-fade-in">
+      {/* <h2 className="text-white font-Afacad text-5xl md:text-6xl tracking-widest animate-fade-in">
         NEURA AI
-      </h2>
+      </h2> */}
     </div>
   );
 }
+
 
