@@ -43,7 +43,7 @@ export default function KeyFocus() {
         {
           img: dermatology,
           Imgicon: skin,
-          title: "Summa",
+          title: "Trichology",
           description: "AI-based skin anomaly classification and tracking."
         },
         {
