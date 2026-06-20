@@ -1,6 +1,6 @@
 import React from 'react';
 import logoWhite from '../assets/NeuraLogoWhite.png';
-import logoDark from '../assets/NeuraLogoTransparent.png';
+import logoDark from '/Users/yuvaraj/Documents/New website/neura_ai/src/assets/Neura Logo-2.svg';
 
 // Uses the real Neura logo PNG
 // variant: 'white' for dark backgrounds, 'dark' for light backgrounds
