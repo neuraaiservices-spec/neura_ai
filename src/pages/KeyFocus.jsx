@@ -11,9 +11,9 @@ import hair from '../assets/hair.webp';
 import hair2 from '../assets/hair2.webp';
 import hairFall from '../assets/hairFall.webp';
 import hairGrowthIcon from '../assets/hairGrowthIcon.webp';
-import brainicon from '../Users/yuvaraj/Documents/New website/neura_ai/src/assets/brain.png';
-import kidneyicon from "/Users/yuvaraj/Documents/New website/neura_ai/src/assets/NeuraEdu.svg";
-import lungsicon from "/Users/yuvaraj/Documents/New website/neura_ai/src/assets/Screenshot_2026-06-12_205737-removebg-preview.png";
+import brainicon from '../assets/brain.png';
+import kidneyicon from "../assets/NeuraEdu.svg";
+import lungsicon from "../assets/Screenshot_2026-06-12_205737-removebg-preview.png";
 
 
 
