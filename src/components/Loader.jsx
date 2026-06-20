@@ -1,156 +1,156 @@
-// import React from 'react';
-// import styled from 'styled-components';
-
-// const Loader = () => {
-//   return (
-//     <StyledWrapper>
-//       <div className="loader-wrapper">
-//         <span className="loader-letter">N</span>
-//         <span className="loader-letter">E</span>
-//         <span className="loader-letter">U</span>
-//         <span className="loader-letter">R</span>
-//         <span className="loader-letter">A</span>
-//         <span className="loader-letter"> </span>
-//         <span className="loader-letter ml-2">A</span>
-//         <span className="loader-letter">I</span>
-//         {/* <span className="loader-letter">n</span>
-//         <span className="loader-letter">g</span> */}
-//         <div className="loader" />
-//       </div>
-//     </StyledWrapper>
-//   );
-// }
-
-// const StyledWrapper = styled.div`
-//   .loader-wrapper {
-//     position: relative;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     width: 180px;
-//     height: 180px;
-//     letter-spacing:3px;
-//     font-family: "Inter", sans-serif;
-//     font-size: 1.5em;
-//     font-weight: 700;
-//     color: white;
-//     border-radius: 50%;
-//     background-color: transparent;
-//     user-select: none;
-//   }
-
-//   .loader {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     aspect-ratio: 1 / 1;
-//     border-radius: 50%;
-//     background-color: transparent;
-//     animation: loader-rotate 2s linear infinite;
-//     z-index: 0;
-//   }
-
-//   @keyframes loader-rotate {
-//     0% {
-//       transform: rotate(90deg);
-//       box-shadow:
-//         0 10px 20px 0 #fff inset,
-//         0 20px 30px 0 #ad5fff inset,
-//         0 60px 60px 0 #471eec inset;
-//     }
-//     50% {
-//       transform: rotate(270deg);
-//       box-shadow:
-//         0 10px 20px 0 #fff inset,
-//         0 20px 10px 0 #d60a47 inset,
-//         0 40px 60px 0 #311e80 inset;
-//     }
-//     100% {
-//       transform: rotate(450deg);
-//       box-shadow:
-//         0 10px 20px 0 #fff inset,
-//         0 20px 30px 0 #ad5fff inset,
-//         0 60px 60px 0 #471eec inset;
-//     }
-//   }
-
-//   .loader-letter {
-//     display: inline-block;
-//     opacity: 0.4;
-//     transform: translateY(0);
-//     animation: loader-letter-anim 2s infinite;
-//     z-index: 1;
-//     border-radius: 50ch;
-//     border: none;
-//   }
-
-//   .loader-letter:nth-child(1) {
-//     animation-delay: 0s;
-//   }
-//   .loader-letter:nth-child(2) {
-//     animation-delay: 0.1s;
-//   }
-//   .loader-letter:nth-child(3) {
-//     animation-delay: 0.2s;
-//   }
-//   .loader-letter:nth-child(4) {
-//     animation-delay: 0.3s;
-//   }
-//   .loader-letter:nth-child(5) {
-//     animation-delay: 0.4s;
-//   }
-//   .loader-letter:nth-child(6) {
-//     animation-delay: 0.5s;
-//   }
-//   .loader-letter:nth-child(7) {
-//     animation-delay: 0.6s;
-//   }
-//   .loader-letter:nth-child(8) {
-//     animation-delay: 0.7s;
-//   }
-//   .loader-letter:nth-child(9) {
-//     animation-delay: 0.8s;
-//   }
-//   .loader-letter:nth-child(10) {
-//     animation-delay: 0.9s;
-//   }
-
-//   @keyframes loader-letter-anim {
-//     0%,
-//     100% {
-//       opacity: 0.4;
-//       transform: translateY(0);
-//     }
-//     20% {
-//       opacity: 1;
-//       transform: scale(1.15);
-//     }
-//     40% {
-//       opacity: 0.7;
-//       transform: translateY(0);
-//     }
-//   }`;
-
-// export default Loader;
-
-
-import React from 'react';
-import logo from '../assets/Logo.png'; // replace with your uploaded logo if renamed
+import React, { useEffect, useRef, useState } from 'react';
+import NeuraLogo from './NeuraLogo';
 
 export default function Loader() {
+  const canvasRef = useRef(null);
+  const [progress, setProgress] = useState(0);
+  const [phase, setPhase] = useState(0);
+  const phases = ['Initialising R&D Network', 'Connecting Nodes', 'Ready'];
+
+  useEffect(() => {
+    // Progress bar
+    let p = 0;
+    const timer = setInterval(() => {
+      p += 1.2;
+      setProgress(Math.min(p, 100));
+      if (p > 40) setPhase(1);
+      if (p > 80) setPhase(2);
+      if (p >= 100) clearInterval(timer);
+    }, 30);
+
+    // Neuron canvas
+    const canvas = canvasRef.current;
+    if (!canvas) return () => clearInterval(timer);
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const S = 280; // logical size
+    canvas.width = S * dpr;
+    canvas.height = S * dpr;
+    canvas.style.width = S + 'px';
+    canvas.style.height = S + 'px';
+    ctx.scale(dpr, dpr);
+
+    const cx = S / 2, cy = S / 2;
+    const R = 90;
+    let t = 0, animId;
+
+    // 6 satellite nodes evenly spaced
+    const sats = Array.from({length:6}, (_,i) => {
+      const a = (i * 60 - 90) * Math.PI / 180;
+      return { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a), phase: i * (Math.PI/3) };
+    });
+
+    function draw() {
+      ctx.clearRect(0, 0, S, S);
+      t += 0.02;
+
+      // Lines + travelling pulses
+      sats.forEach((s, i) => {
+        // Base line
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(s.x, s.y);
+        ctx.strokeStyle = `rgba(0,201,167,${0.08 + 0.04 * Math.sin(t + i)})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+
+        // Travelling pulse
+        const fwd = (t * 0.5 + i * 0.5) % 1;
+        const px = cx + (s.x - cx) * fwd;
+        const py = cy + (s.y - cy) * fwd;
+        const g = ctx.createRadialGradient(px,py,0,px,py,6);
+        g.addColorStop(0,'rgba(0,201,167,1)');
+        g.addColorStop(1,'rgba(0,201,167,0)');
+        ctx.beginPath();
+        ctx.arc(px, py, 6, 0, Math.PI*2);
+        ctx.fillStyle = g; ctx.fill();
+      });
+
+      // Cross connections (hexagon edges)
+      sats.forEach((s, i) => {
+        const next = sats[(i+1)%6];
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(next.x, next.y);
+        ctx.strokeStyle = `rgba(0,201,167,0.06)`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      });
+
+      // Center glow
+      const cg = ctx.createRadialGradient(cx,cy,0,cx,cy,40);
+      cg.addColorStop(0,'rgba(0,201,167,0.18)');
+      cg.addColorStop(1,'rgba(0,201,167,0)');
+      ctx.beginPath(); ctx.arc(cx,cy,40,0,Math.PI*2);
+      ctx.fillStyle = cg; ctx.fill();
+
+      // Center rings
+      [18, 28, 38].forEach((r, i) => {
+        const a = 0.08 + 0.06 * Math.sin(t * 0.8 - i * 0.5);
+        ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+        ctx.strokeStyle = `rgba(0,201,167,${a})`;
+        ctx.lineWidth = i===0 ? 1.5 : 0.8;
+        ctx.stroke();
+      });
+
+      // Center dot
+      ctx.beginPath(); ctx.arc(cx,cy,8,0,Math.PI*2);
+      ctx.fillStyle = '#00c9a7'; ctx.fill();
+      ctx.beginPath(); ctx.arc(cx,cy,4,0,Math.PI*2);
+      ctx.fillStyle = 'white'; ctx.fill();
+
+      // Satellite dots
+      sats.forEach((s,i) => {
+        const pulse = 3 + 1.5 * Math.sin(t * 1.2 + s.phase);
+        const isTeal = i % 2 === 0;
+        // Glow
+        const sg = ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,pulse*3);
+        sg.addColorStop(0,isTeal?'rgba(0,201,167,0.3)':'rgba(255,255,255,0.15)');
+        sg.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.beginPath(); ctx.arc(s.x,s.y,pulse*3,0,Math.PI*2);
+        ctx.fillStyle=sg; ctx.fill();
+        // Core
+        ctx.beginPath(); ctx.arc(s.x,s.y,pulse,0,Math.PI*2);
+        ctx.fillStyle = isTeal ? '#00c9a7' : 'rgba(255,255,255,0.8)';
+        ctx.fill();
+      });
+
+      animId = requestAnimationFrame(draw);
+    }
+    draw();
+    return () => { clearInterval(timer); cancelAnimationFrame(animId); };
+  }, []);
+
   return (
-    <div className="flex flex-col w-full gap-5 justify-center items-center min-h-screen bg-gradient-to-br from-[#020617] via-[#0A192F] to-[#112240]">
-      <img
-        src={logo}
-        alt="Neura AI Logo"
-        className="h-28 w-28 animate-pulse"
-      />
-      {/* <h2 className="text-white font-Afacad text-5xl md:text-6xl tracking-widest animate-fade-in">
-        NEURA AI
-      </h2> */}
+    <div style={{
+      position:'fixed', inset:0, background:'#0a0f1e',
+      display:'flex', flexDirection:'column',
+      alignItems:'center', justifyContent:'center', zIndex:9999,
+    }}>
+      {/* Canvas neuron */}
+      <canvas ref={canvasRef} style={{display:'block', marginBottom:32}} />
+
+      {/* Logo */}
+      <NeuraLogo variant="white" height={36} />
+
+      {/* Phase text */}
+      <p style={{
+        fontFamily:"Inter,-apple-system,sans-serif",
+        color:'rgba(0,201,167,0.5)', fontSize:10,
+        letterSpacing:'0.18em', textTransform:'uppercase',
+        marginTop:8, marginBottom:28, fontWeight:500,
+        minHeight:14, transition:'opacity 0.5s',
+      }}>{phases[phase]}</p>
+
+      {/* Progress bar */}
+      <div style={{width:160,height:1.5,background:'rgba(255,255,255,0.07)',borderRadius:2,overflow:'hidden'}}>
+        <div style={{
+          height:'100%', borderRadius:2,
+          background:'linear-gradient(90deg,#0071e3,#00c9a7)',
+          width:`${progress}%`, transition:'width 30ms linear',
+          boxShadow:'0 0 10px rgba(0,201,167,0.6)',
+        }}/>
+      </div>
     </div>
   );
 }
-
-

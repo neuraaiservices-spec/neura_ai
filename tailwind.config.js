@@ -1,42 +1,38 @@
-import { keyframes } from "framer-motion";
-const withMT = require("@material-tailwind/react/utils/withMT");
-
 /** @type {import('tailwindcss').Config} */
-export default withMT({
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+export default {
+  content: ["./index.html","./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        primary: 'rgb(3 7 18)',
+        primary:      '#0a0f1e',
+        'primary-mid':'#111827',
+        'primary-card':'#1a2235',
+        blue:         '#0071e3',
+        'blue-light': '#2997ff',
+        teal:         '#00c9a7',
+        'teal-dim':   '#00a688',
+        cream:        '#f5f5f7',
+        'text-mid':   '#6e6e73',
       },
       fontFamily: {
-        alice: ["Alice", "serif"],
-        lora: ["Lora", "serif"],
-        Sacramento: ["Sacramento", "serif"],
-        Inter: ["Inter", "sans-serif"],
-        Afacad: ["Afacad Flux", "sans-serif"],
-        syne: ["Syne", "sans-serif"],
+        sans:    ['Inter','-apple-system','BlinkMacSystemFont','sans-serif'],
+        display: ['DM Serif Display','Georgia','serif'],
       },
       animation: {
-        'fade-in': 'fadeIn 0.8s ease-in forwards',
-        'loader': 'loader 1.5s ease-in-out infinite alternate',
+        'fade-in':    'fadeIn 0.8s ease forwards',
+        'pulse-slow': 'pulse 3s ease-in-out infinite',
+        'float':      'float 6s ease-in-out infinite',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 },
-        },
-        loader: {
-          '0%': { opacity: 0, transform: 'scale(0.9)' },   // ✅ string
-          '50%': { opacity: 1, transform: 'scale(1.05)' },  // ✅ string
-          '100%': { opacity: 1, transform: 'scale(1)' }     // ✅ string
-        },
-        
+        fadeIn: { '0%':{opacity:0},'100%':{opacity:1} },
+        float:  { '0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-8px)'} },
+      },
+      boxShadow: {
+        'apple': '0 4px 24px rgba(0,0,0,0.12)',
+        'apple-lg': '0 12px 48px rgba(0,0,0,0.18)',
+        'glow-teal': '0 0 40px rgba(0,201,167,0.15)',
       },
     },
   },
   plugins: [],
-});
+};

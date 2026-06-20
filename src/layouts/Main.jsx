@@ -3,28 +3,29 @@ import Navbar from '../shared/Navbar';
 import { Outlet } from 'react-router-dom';
 import Footer from '../shared/Footer';
 import Loader from '../components/Loader';
+import WorkshopBanner from '../components/WorkshopBanner';
 
 export default function Main() {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3000);
+    // Reduce loader time — 2s is enough
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
-
   return (
-    <main className="min-h-screen">
-      {loading ? (
-        <div className="w-full h-screen flex justify-center items-center">
-          <Loader />
-        </div>
-      ) : (
-        <div className="animate-fade-in">
-          <Navbar />
-          <Outlet />
-          <Footer />
-        </div>
-      )}
+    <main style={{minHeight:'100vh'}}>
+      {loading
+        ? <Loader />
+        : (
+          // No animate-fade-in — it starts at opacity:0 causing the gap
+          <div style={{opacity:1}}>
+            <WorkshopBanner />
+            <Navbar />
+            <Outlet />
+            <Footer />
+          </div>
+        )
+      }
     </main>
   );
 }

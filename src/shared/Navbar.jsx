@@ -1,124 +1,161 @@
-import React, { useState } from "react";
-import { RiMenu3Fill } from "react-icons/ri";
-import { motion } from "framer-motion";
-import { RxCross2 } from "react-icons/rx";
-import { Link } from "react-scroll";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import NeuraLogo from '../components/NeuraLogo';
+
+const navLinks = [
+  {id:'home',label:'Home'},{id:'about',label:'About'},
+  {id:'programs',label:'Programs'},{id:'poc',label:'R&D Projects'},
+  {id:'partners',label:'Partners'},{id:'events',label:'Events'},
+  {id:'impact',label:'Recognition'},{id:'testimonials',label:'Students'},
+];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive]     = useState('home');
 
-  const navLinks = [
-    { to: "home", label: "Home" },
-    { to: "about", label: "About" },
-    { to: "focus-area", label: "Focus Area" },
-    { to: "solution", label: "Solution" },
-    { to: "internship", label: "Internships" },
-    { to: "contact", label: "Contact" },
-  ];
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+      const sections = navLinks.map(l => document.getElementById(l.id)).filter(Boolean);
+      const cur = sections.find(s => {
+        const r = s.getBoundingClientRect();
+        return r.top <= 80 && r.bottom >= 80;
+      });
+      if (cur) setActive(cur.id);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const scrollTo = id => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
+  };
 
   return (
-    <header className="bg-primary fixed text-white w-full font-Afacad border-b z-40 top-0 ">
-      <div className="max-w-7xl mx-auto px-4 py-5 flex lg:justify-between items-center justify-between">
+    <header style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+      background: scrolled ? 'rgba(10,15,30,0.97)' : 'rgba(10,15,30,1)',
+      backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
+      WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
+      borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : '1px solid rgba(255,255,255,0.04)',
+      transition: 'all 0.3s ease',
+    }}>
+      <div style={{
+        maxWidth: 1280, margin: '0 auto',
+        padding: '0 40px', height: 52,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      }}>
         {/* Logo */}
-        <Link
-          to="home"
-          style={{ letterSpacing: "5px" }}
-          className="text-xl font-bold select-none cursor-pointer"
+        <button
+          onClick={() => scrollTo('home')}
+          style={{ background:'none', border:'none', cursor:'pointer', padding:'4px 0', display:'flex', alignItems:'center' }}
+          aria-label="Neura AI Home"
         >
-          NEURA AI
-        </Link>
+          <NeuraLogo variant="white" height={32} />
+        </button>
 
-        {/* Desktop Menu */}
-        <nav
-          style={{ letterSpacing: "3px" }}
-          className="hidden text-sm lg:flex gap-10"
-        >
-          {navLinks.slice(0, 5).map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              smooth={true}
-              duration={600}
-              offset={-80}
-              spy={true}
-              isActive={(match) => match || link.to === "home"} // ✅ Highlights "Home" on load
-              className="cursor-pointer px-4 py-1"
-              activeClass="bg-white text-black rounded-xl font-bold "
+        {/* Desktop nav — Apple style: small, centered, light */}
+        <nav style={{ display:'flex', alignItems:'center', gap: 4 }} className="hidden lg:flex">
+          {navLinks.map(link => (
+            <button
+              key={link.id}
+              onClick={() => scrollTo(link.id)}
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                padding: '6px 14px', borderRadius: 8,
+                fontSize: 13, fontWeight: 500,
+                fontFamily: "Inter, -apple-system, sans-serif",
+                letterSpacing: '0.01em',
+                color: active === link.id ? '#00c9a7' : 'rgba(255,255,255,0.65)',
+                transition: 'color 0.2s',
+              }}
+              onMouseEnter={e => { if(active !== link.id) e.target.style.color = 'rgba(255,255,255,0.95)'; }}
+              onMouseLeave={e => { if(active !== link.id) e.target.style.color = 'rgba(255,255,255,0.65)'; }}
             >
               {link.label}
-            </Link>
+            </button>
           ))}
         </nav>
 
-        {/* Contact Button (Desktop) */}
-        <div className="hidden lg:flex">
-          <Link
-            style={{ letterSpacing: "3px" }}
-            to="contact"
-            smooth={true}
-            duration={600}
-            offset={-80}
-            spy={true}
-            className="cursor-pointer border  text-sm px-4 py-1 rounded transition"
-            activeClass="bg-white text-black scale-110"
-          >
-            Contact
-          </Link>
-        </div>
+        {/* CTA */}
+        <button
+          onClick={() => scrollTo('register')}
+          className="hidden lg:flex"
+          style={{
+            background: '#0071e3', color: '#fff',
+            border: 'none', cursor: 'pointer',
+            padding: '8px 20px', borderRadius: 20,
+            fontSize: 13, fontWeight: 600,
+            fontFamily: "Inter, -apple-system, sans-serif",
+            letterSpacing: '0.01em',
+            transition: 'background 0.2s',
+          }}
+          onMouseEnter={e => e.target.style.background = '#2997ff'}
+          onMouseLeave={e => e.target.style.background = '#0071e3'}
+        >
+          Register Now
+        </button>
 
-        {/* Mobile Menu Icon */}
-        <div className="lg:hidden">
-          <motion.button
-            onClick={() => setMenuOpen(!menuOpen)}
-            animate={{ rotate: menuOpen ? 360 : 0 }}
-            transition={{ type: "spring", stiffness: 500 }}
-          >
-            {menuOpen ? <RxCross2 size={24} /> : <RiMenu3Fill size={24} />}
-          </motion.button>
-        </div>
+        {/* Mobile hamburger */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="lg:hidden"
+          style={{ background:'none', border:'none', cursor:'pointer', color:'white', padding:8 }}
+          aria-label="Menu"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {menuOpen
+              ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
+              : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/>}
+          </svg>
+        </button>
       </div>
 
-      {/* Mobile Dropdown Menu */}
-      {menuOpen && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          style={{ letterSpacing: "3px" }}
-          className="lg:hidden absolute w-full px-4 pb-4 text-sm flex flex-col items-center gap-8 bg-primary border-t pt-7 text-white"
-        >
-          {navLinks.slice(0, 5).map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              smooth={true}
-              duration={600}
-              offset={-80}
-              spy={true}
-              isActive={(match) => match || link.to === "home"} // ✅ Mobile too
-              onClick={() => setMenuOpen(false)}
-              className="cursor-pointer hover:text-gray-300"
-              activeClass="bg-white text-black rounded-xl font-bold "
-            >
-              {link.label}
-            </Link>
-          ))}
-
-          <Link
-            style={{ letterSpacing: "3px" }}
-            to="contact"
-            smooth={true}
-            duration={600}
-            offset={-80}
-            spy={true}
-            onClick={() => setMenuOpen(false)}
-            className="bg-white text-[#0E5247] px-4 py-2 text-sm rounded text-center hover:bg-gray-100 transition cursor-pointer"
-            activeClass="text-[#FEB763]"
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity:0, y:-8 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-8 }}
+            style={{
+              background: 'rgba(10,15,30,0.99)',
+              borderTop: '1px solid rgba(255,255,255,0.07)',
+            }}
           >
-            Contact
-          </Link>
-        </motion.div>
-      )}
+            <div style={{ padding: '16px 24px', display:'flex', flexDirection:'column', gap:4 }}>
+              {navLinks.map(link => (
+                <button
+                  key={link.id}
+                  onClick={() => scrollTo(link.id)}
+                  style={{
+                    background:'none', border:'none', cursor:'pointer', textAlign:'left',
+                    padding:'12px 16px', borderRadius:12,
+                    fontSize:15, fontWeight:500,
+                    fontFamily:"Inter, -apple-system, sans-serif",
+                    color: active === link.id ? '#00c9a7' : 'rgba(255,255,255,0.7)',
+                  }}
+                >
+                  {link.label}
+                </button>
+              ))}
+              <button
+                onClick={() => scrollTo('register')}
+                style={{
+                  marginTop:12, background:'#0071e3', color:'white',
+                  border:'none', cursor:'pointer',
+                  padding:'14px 20px', borderRadius:20,
+                  fontSize:15, fontWeight:600,
+                  fontFamily:"Inter, -apple-system, sans-serif",
+                }}
+              >
+                Register Now
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

@@ -1,5 +1,113 @@
-@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Alice&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── DESIGN TOKENS ─────────────────────────────────────────── */
+:root {
+  /* Apple-inspired trust palette */
+  --navy:      #0a0f1e;   /* deepest bg */
+  --navy-mid:  #111827;   /* card bg on dark */
+  --navy-card: #1a2235;   /* elevated card */
+  --blue:      #0071e3;   /* Apple blue — trust, authority */
+  --blue-light:#2997ff;   /* lighter blue */
+  --teal:      #00c9a7;   /* innovation accent */
+  --teal-dim:  #00a688;
+  --cream:     #f5f5f7;   /* Apple light grey */
+  --white:     #ffffff;
+  --text-dark: #1d1d1f;   /* Apple body text */
+  --text-mid:  #6e6e73;   /* Apple secondary text */
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-dark);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.font-display { font-family: 'DM Serif Display', Georgia, serif; }
+
+/* ── FLIP CARD ──────────────────────────────────────────────── */
+.flip-card { perspective: 1000px; }
+.flip-card-inner {
+  position:relative; width:100%; height:100%;
+  transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+  position:absolute; width:100%; height:100%;
+  backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  border-radius:14px; overflow:hidden;
+}
+.flip-card-back { transform: rotateY(180deg); }
+
+/* ── NEURON LOADER ──────────────────────────────────────────── */
+@keyframes neuronPulse {
+  0%, 100% { opacity: 0.2; r: 4; }
+  50%       { opacity: 1;   r: 6; }
+}
+@keyframes synapseFlow {
+  0%   { stroke-dashoffset: 200; opacity: 0; }
+  30%  { opacity: 1; }
+  100% { stroke-dashoffset: 0;   opacity: 0.6; }
+}
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── WHATSAPP PULSE ─────────────────────────────────────────── */
+@keyframes waPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.4); }
+  70%     { box-shadow: 0 0 0 10px rgba(37,211,102,0); }
+}
+.wa-pulse { animation: waPulse 2s infinite; }
+
+/* ── GLASS CARD ─────────────────────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+}
+
+/* ── GRADIENT TEXT ──────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #00c9a7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-blue {
+  background: linear-gradient(135deg, #0071e3 0%, #00c9a7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── SECTION BASE ───────────────────────────────────────────── */
+.section-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--teal);
+  background: rgba(0,201,167,0.1);
+  padding: 5px 14px; border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+/* ── SCROLL REVEAL ──────────────────────────────────────────── */
+.reveal { opacity:0; transform:translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+@layer utilities {
+  .bg-navy     { background-color: var(--navy); }
+  .bg-navy-mid { background-color: var(--navy-mid); }
+  .bg-navy-card{ background-color: var(--navy-card); }
+  .text-teal   { color: var(--teal); }
+  .bg-cream    { background-color: var(--cream); }
+}
