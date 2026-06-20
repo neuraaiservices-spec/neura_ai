@@ -3,10 +3,10 @@ import logoWhite from '../assets/Neura Logo-3.svg';
 import logoDark from '../assets/Neura Logo-4.svg';
 
 // variant: 'white' for dark backgrounds, 'dark' for light backgrounds
-export default function NeuraLogo({ variant = 'white', height = 50 }) {
+export default function NeuraLogo({ variant = 'white', height = 70 }) {
   const src = variant === 'white' ? logoDark : logoWhite;
   // Logo is 643x297, so width = height * (643/297)
-  const width = Math.round(height * (643 / 297));
+  const width = Math.round(height * (700 / 500));
   return (
     <img
       src={src}
