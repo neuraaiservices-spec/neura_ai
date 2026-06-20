@@ -1,13 +1,13 @@
 import React from 'react';
-import logoWhite from '../assets/Neura Logo-3.svg';
-import logoDark from '../assets/Neura Logo-4.svg';
-import logomain from "../assets/Neura Logo-5.svg"
+import logoWhite from '/Users/yuvaraj/Documents/New website/neura_ai/src/assets/Neura Logo-4.svg';
+import logoDark from '/Users/yuvaraj/Documents/New website/neura_ai/src/assets/Neura Logo-3.svg';
 
+// Uses the real Neura logo PNG
 // variant: 'white' for dark backgrounds, 'dark' for light backgrounds
-export default function NeuraLogo({ variant = 'white', height = 70 }) {
-  const src = variant === 'white' ? logomain : logoWhite ;
+export default function NeuraLogo({ variant = 'white', height = 36 }) {
+  const src = variant === 'white' ? logoWhite : logoDark;
   // Logo is 643x297, so width = height * (643/297)
-  const width = Math.round(height * (700 / 500));
+  const width = Math.round(height * (643 / 297));
   return (
     <img
       src={src}
