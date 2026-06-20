@@ -1,7 +1,7 @@
 import React from 'react';
 import logoWhite from '../assets/Neura Logo-3.svg';
 import logoDark from '../assets/Neura Logo-4.svg';
-import logomain from "src/assets/Neura Logo-5.svg"
+import logomain from "../assets/Neura Logo-5.svg"
 
 // variant: 'white' for dark backgrounds, 'dark' for light backgrounds
 export default function NeuraLogo({ variant = 'white', height = 70 }) {
