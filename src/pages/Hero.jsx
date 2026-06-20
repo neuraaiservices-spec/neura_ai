@@ -156,7 +156,7 @@ const STATS = [
 
 export default function Hero() {
   return (
-    <section id="home" style={{background:'#0a0f1e',minHeight:'100vh',display:'flex',alignItems:'center',position:'relative',overflow:'hidden',paddingTop:52}}>
+    <section id="home" style={{background:'#0a0f1e',minHeight:'100vh',display:'flex',alignItems:'center',position:'relative',overflow:'hidden',paddingTop:92}}>
       <div style={{position:'absolute',inset:0,pointerEvents:'none'}}>
         <div style={{position:'absolute',top:'20%',left:'15%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(0,113,227,0.09) 0%,transparent 70%)'}}/>
       </div>
