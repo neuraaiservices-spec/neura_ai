@@ -93,7 +93,7 @@ function AgendaTimeline() {
   );
 }
 
-export default function WorkshopJuly17() {
+export default function WorkshopJuly18() {
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState('');
   const [countries, setCountries] = useState([]);
@@ -112,7 +112,7 @@ export default function WorkshopJuly17() {
     e.preventDefault(); setSubmitting(true);
     const fd = new FormData();
     fd.append('access_key', '2b6c2867-c8e5-4891-9d93-54d4d04b26b6');
-    fd.append('event', 'AI in Healthcare Workshop — 17 July 2026 — Pending Payment');
+    fd.append('event', 'AI in Healthcare Workshop — 18 July 2026 — Pending Payment');
     Object.entries(form).forEach(([k,v]) => fd.append(k, v));
     try {
       await fetch('https://api.web3forms.com/submit', { method:'POST', body:fd });
@@ -207,7 +207,7 @@ export default function WorkshopJuly17() {
             background:'rgba(255,255,255,0.02)',
           }}>
           {[
-            {icon:'📅', label:'Date', value:'17 July, Sat'},
+            {icon:'📅', label:'Date', value:'18 July, Sat'},
             {icon:'⏰', label:'Time', value:'9 AM – 4 PM'},
             {icon:'📍', label:'Venue', value:'IITM Research Park'},
             {icon:'💻', label:'Format', value:'Hybrid'},
@@ -317,7 +317,7 @@ export default function WorkshopJuly17() {
           }}>
             <div style={{textAlign:'center', marginBottom:26}}>
               <p style={{fontFamily:"'DM Serif Display',Georgia,serif", fontSize:23, color:'#0a0f1e', marginBottom:6}}>Reserve your seat</p>
-              <p style={{color:'#6e6e73', fontSize:13, fontFamily:"Inter,-apple-system,sans-serif"}}>17 July · IITM Research Park · ₹1,000</p>
+              <p style={{color:'#6e6e73', fontSize:13, fontFamily:"Inter,-apple-system,sans-serif"}}>18 July · IITM Research Park · ₹1,000</p>
             </div>
 
             <form onSubmit={submit} style={{display:'flex', flexDirection:'column', gap:12}}>
