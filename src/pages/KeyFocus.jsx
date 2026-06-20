@@ -11,13 +11,18 @@ import hair from '../assets/hair.webp';
 import hair2 from '../assets/hair2.webp';
 import hairFall from '../assets/hairFall.webp';
 import hairGrowthIcon from '../assets/hairGrowthIcon.webp';
+import brainicon from '../Users/yuvaraj/Documents/New website/neura_ai/src/assets/brain.png';
+import kidneyicon from "/Users/yuvaraj/Documents/New website/neura_ai/src/assets/NeuraEdu.svg"
+import lungsicon from "/Users/yuvaraj/Documents/New website/neura_ai/src/assets/Screenshot_2026-06-12_205737-removebg-preview.png"
+
+
 
 const areas = [
-  { bg: brain,       frontIcon: '🧠',          title: 'Neurology',       desc: 'Predict and prevent strokes, epilepsy, and neurodegeneration using AI.' },
+  { bg: brain,       frontIcon: 'brainicon',          title: 'Neurology',       desc: 'Predict and prevent strokes, epilepsy, and neurodegeneration using AI.' },
   { bg: cardio,      frontIcon: heartIcon,      isImg: true, title: 'Cardiology', desc: 'Detect cardiovascular disease before symptoms appear.' },
-  { bg: kidney,      frontIcon: '🫘',           title: 'Nephrology',      desc: 'Predictive analytics for kidney health monitoring.' },
+  { bg: kidney,      frontIcon: 'kidneyicon',           title: 'Nephrology',      desc: 'Predictive analytics for kidney health monitoring.' },
   { bg: dermatology, frontIcon: skinImg,         isImg: true, title: 'Dermatology', desc: 'AI-based skin anomaly classification and tracking.' },
-  { bg: lungs,       frontIcon: '🫁',           title: 'Pulmonology',     desc: 'Early warning systems for chronic respiratory conditions.' },
+  { bg: lungs,       frontIcon: 'lungsicon',           title: 'Pulmonology',     desc: 'Early warning systems for chronic respiratory conditions.' },
   { bg: hair,        frontIcon: hairGrowthIcon,  isImg: true, title: 'Hair Growth', desc: 'Stimulating natural hair regeneration through AI-guided therapy.' },
   { bg: hair2,       frontIcon: hairFall,        isImg: true, title: 'Chemo Hair Loss', desc: 'Helping cancer patients retain their identity during treatment.' },
 ];
