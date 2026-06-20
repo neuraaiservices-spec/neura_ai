@@ -64,7 +64,7 @@ export default function About() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <NeuraLogo variant="dark" height={26} />
+                  <NeuraLogo variant="logomain" height={26} />
                   <span className="text-xs font-semibold text-text-mid bg-cream px-3 py-1 rounded-full border border-black/8">Education Division</span>
                 </div>
                 <h3 className="font-display text-3xl lg:text-4xl text-primary mt-4 mb-4">
