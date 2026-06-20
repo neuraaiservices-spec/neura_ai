@@ -1,16 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import NeuraLogo from '../components/NeuraLogo';
-
-// 🔗 Replace this with your real Razorpay Payment Link once created
-const RAZORPAY_LINK = 'https://rzp.io/l/REPLACE_ME';
-
-const inp = {
-  width:'100%', background:'#f8f8f9', border:'1px solid rgba(0,0,0,0.08)',
-  borderRadius:10, padding:'12px 15px', fontSize:13.5,
-  fontFamily:"Inter,-apple-system,sans-serif", color:'#0a0f1e',
-  outline:'none', transition:'border-color 0.2s, background 0.2s',
-};
 
 // Ambient neuron canvas — creative backdrop, healthcare + AI themed
 function AmbientCanvas() {
@@ -94,36 +84,6 @@ function AgendaTimeline() {
 }
 
 export default function WorkshopJuly18() {
-  const [submitting, setSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
-  const [countries, setCountries] = useState([]);
-  const [form, setForm] = useState({
-    firstName:'', lastName:'', email:'', phone:'',
-    college:'', course:'', city:'', country:'',
-  });
-
-  useEffect(() => {
-    fetch('/country.json').then(r=>r.json()).then(setCountries).catch(()=>{});
-  }, []);
-
-  const update = e => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const submit = async (e) => {
-    e.preventDefault(); setSubmitting(true);
-    const fd = new FormData();
-    fd.append('access_key', '2b6c2867-c8e5-4891-9d93-54d4d04b26b6');
-    fd.append('event', 'AI in Healthcare Workshop — 18 July 2026 — Pending Payment');
-    Object.entries(form).forEach(([k,v]) => fd.append(k, v));
-    try {
-      await fetch('https://api.web3forms.com/submit', { method:'POST', body:fd });
-      setMessage('✅ Details saved. Redirecting to payment...');
-      setTimeout(() => { window.location.href = RAZORPAY_LINK; }, 900);
-    } catch {
-      setMessage('❌ Network error. Please try again.');
-      setSubmitting(false);
-    }
-  };
-
   const scrollToForm = () => document.getElementById('workshop-register')?.scrollIntoView({behavior:'smooth'});
 
   return (
@@ -207,7 +167,7 @@ export default function WorkshopJuly18() {
             background:'rgba(255,255,255,0.02)',
           }}>
           {[
-            {icon:'📅', label:'Date', value:'18 July, Sat'},
+            {icon:'📅', label:'Date', value:'17 July, Sat'},
             {icon:'⏰', label:'Time', value:'9 AM – 4 PM'},
             {icon:'📍', label:'Venue', value:'IITM Research Park'},
             {icon:'💻', label:'Format', value:'Hybrid'},
@@ -307,55 +267,34 @@ export default function WorkshopJuly18() {
         </div>
       </section>
 
-      {/* Registration form */}
+      {/* Registration form — embedded Google Form */}
       <section id="workshop-register" style={{padding:'64px 40px 100px'}}>
         <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}}
-          style={{maxWidth:500, margin:'0 auto'}}>
-          <div style={{
-            background:'#ffffff', borderRadius:26, padding:'40px 34px',
-            boxShadow:'0 30px 70px rgba(0,0,0,0.4)',
-          }}>
-            <div style={{textAlign:'center', marginBottom:26}}>
-              <p style={{fontFamily:"'DM Serif Display',Georgia,serif", fontSize:23, color:'#0a0f1e', marginBottom:6}}>Reserve your seat</p>
-              <p style={{color:'#6e6e73', fontSize:13, fontFamily:"Inter,-apple-system,sans-serif"}}>18 July · IITM Research Park · ₹1,000</p>
-            </div>
-
-            <form onSubmit={submit} style={{display:'flex', flexDirection:'column', gap:12}}>
-              <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:10}}>
-                <input name="firstName" value={form.firstName} onChange={update} required placeholder="First name" style={inp} onFocus={e=>{e.target.style.borderColor='#0071e3';e.target.style.background='white';}} onBlur={e=>{e.target.style.borderColor='rgba(0,0,0,0.08)';e.target.style.background='#f8f8f9';}}/>
-                <input name="lastName" value={form.lastName} onChange={update} required placeholder="Last name" style={inp} onFocus={e=>{e.target.style.borderColor='#0071e3';e.target.style.background='white';}} onBlur={e=>{e.target.style.borderColor='rgba(0,0,0,0.08)';e.target.style.background='#f8f8f9';}}/>
-              </div>
-              <input name="email" type="email" value={form.email} onChange={update} required placeholder="Email" style={inp} onFocus={e=>{e.target.style.borderColor='#0071e3';e.target.style.background='white';}} onBlur={e=>{e.target.style.borderColor='rgba(0,0,0,0.08)';e.target.style.background='#f8f8f9';}}/>
-              <input name="phone" type="tel" value={form.phone} onChange={update} required placeholder="Phone / WhatsApp" style={inp} onFocus={e=>{e.target.style.borderColor='#0071e3';e.target.style.background='white';}} onBlur={e=>{e.target.style.borderColor='rgba(0,0,0,0.08)';e.target.style.background='#f8f8f9';}}/>
-              <input name="college" value={form.college} onChange={update} required placeholder="College / Organisation" style={inp} onFocus={e=>{e.target.style.borderColor='#0071e3';e.target.style.background='white';}} onBlur={e=>{e.target.style.borderColor='rgba(0,0,0,0.08)';e.target.style.background='#f8f8f9';}}/>
-              <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:10}}>
-                <input name="course" value={form.course} onChange={update} placeholder="Course / Role" style={inp} onFocus={e=>{e.target.style.borderColor='#0071e3';e.target.style.background='white';}} onBlur={e=>{e.target.style.borderColor='rgba(0,0,0,0.08)';e.target.style.background='#f8f8f9';}}/>
-                <input name="city" value={form.city} onChange={update} required placeholder="City" style={inp} onFocus={e=>{e.target.style.borderColor='#0071e3';e.target.style.background='white';}} onBlur={e=>{e.target.style.borderColor='rgba(0,0,0,0.08)';e.target.style.background='#f8f8f9';}}/>
-              </div>
-              <select name="country" value={form.country} onChange={update} style={inp}>
-                <option value="">Country (optional)</option>
-                {countries.map((c,i)=><option key={i} value={c.name}>{c.name}</option>)}
-              </select>
-
-              <button type="submit" disabled={submitting} style={{
-                background:'#0a0f1e', color:'white', border:'none', cursor:'pointer',
-                padding:'15px', borderRadius:12, fontSize:14, fontWeight:700,
-                fontFamily:"Inter,-apple-system,sans-serif", marginTop:8,
-                opacity: submitting?0.6:1, transition:'all 0.2s',
-              }}
-                onMouseEnter={e=>{if(!submitting)e.currentTarget.style.background='#0071e3';}}
-                onMouseLeave={e=>{e.currentTarget.style.background='#0a0f1e';}}>
-                {submitting ? 'Submitting...' : 'Continue to Payment — ₹1,000 →'}
-              </button>
-
-              {message && (
-                <p style={{fontSize:13, textAlign:'center', fontWeight:600, color:message.startsWith('✅')?'#00a688':'#e53e3e', fontFamily:"Inter,-apple-system,sans-serif"}}>{message}</p>
-              )}
-              <p style={{fontSize:11, color:'#9a9a9e', textAlign:'center', fontFamily:"Inter,-apple-system,sans-serif"}}>
-                You'll be redirected to Razorpay's secure checkout to complete payment.
-              </p>
-            </form>
+          style={{maxWidth:640, margin:'0 auto'}}>
+          <div style={{textAlign:'center', marginBottom:26}}>
+            <p style={{fontFamily:"'DM Serif Display',Georgia,serif", fontSize:25, color:'white', marginBottom:8}}>Reserve your seat</p>
+            <p style={{color:'rgba(255,255,255,0.45)', fontSize:13.5, fontFamily:"Inter,-apple-system,sans-serif"}}>17 July · IITM Research Park · ₹1,000</p>
           </div>
+
+          <div style={{
+            background:'#ffffff', borderRadius:24, overflow:'hidden',
+            boxShadow:'0 30px 70px rgba(0,0,0,0.4)',
+            border:'1px solid rgba(255,255,255,0.06)',
+          }}>
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLScMXuGMSdrdzOhcmhpI2g2Sk-TfvJEpZEf9sL3Uj_-1Gh0l0g/viewform?embedded=true"
+              width="100%"
+              height="900"
+              style={{display:'block', border:'none'}}
+              title="AI in Healthcare Workshop Registration"
+            >
+              Loading registration form…
+            </iframe>
+          </div>
+
+          <p style={{fontSize:12, color:'rgba(255,255,255,0.3)', textAlign:'center', marginTop:18, fontFamily:"Inter,-apple-system,sans-serif"}}>
+            Payment details will be shared after you submit the form.
+          </p>
         </motion.div>
       </section>
 
