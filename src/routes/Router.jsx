@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
 import Home from "../pages/Home";
-import WorkshopJuly18 from "../pages/WorkshopJuly18";
+import WorkshopJuly18 from "../pages/WorkshopJuly17";
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
   },
   {
     // Standalone page — no shared Navbar/Footer/Loader, custom header
-    path: "/workshop-july18",
+    path: "/workshop-july17",
     element: <WorkshopJuly18 />
   }
 ]);
