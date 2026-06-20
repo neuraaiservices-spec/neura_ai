@@ -93,7 +93,7 @@ function AgendaTimeline() {
   );
 }
 
-export default function WorkshopJuly18() {
+export default function WorkshopJuly17() {
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState('');
   const [countries, setCountries] = useState([]);
