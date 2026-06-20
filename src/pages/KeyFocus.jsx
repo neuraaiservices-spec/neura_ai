@@ -12,7 +12,7 @@ import hair2 from '../assets/hair2.webp';
 import hairFall from '../assets/hairFall.webp';
 import hairGrowthIcon from '../assets/hairGrowthIcon.webp';
 import brainicon from '../assets/brain.png';
-import kidneyicon from "../assets/NeuraEdu.svg";
+import kidneyicon from "../assets/KIDNEY.png";
 import lungsicon from "../assets/Screenshot_2026-06-12_205737-removebg-preview.png";
 
 
