@@ -102,9 +102,9 @@ export default function Events() {
                 padding:'7px 18px', borderRadius:20, fontSize:12, fontWeight:600,
                 fontFamily:"Inter, -apple-system, sans-serif",
                 cursor:'pointer', transition:'all 0.2s',
-                background: filter === c ? '#0a0f1e' : '#ffffff',
+                background: filter === c ? '#1d1d1f' : '#ffffff',
                 color:       filter === c ? '#ffffff' : '#6e6e73',
-                border:      filter === c ? '1px solid #0a0f1e' : '1px solid #e5e5e7',
+                border:      filter === c ? '1px solid #1d1d1f' : '1px solid #e5e5e7',
               }}>
               {c}
             </button>
@@ -137,7 +137,7 @@ export default function Events() {
                   {/* Tag badge */}
                   <div className="absolute top-3 left-3">
                     <span style={{
-                      background:'rgba(10,15,30,0.75)', backdropFilter:'blur(8px)',
+                      background:'rgba(29,29,31,0.75)', backdropFilter:'blur(8px)',
                       color:'#00c9a7', fontSize:10, fontWeight:700,
                       padding:'3px 10px', borderRadius:20,
                       fontFamily:"Inter, -apple-system, sans-serif",

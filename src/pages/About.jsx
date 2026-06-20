@@ -20,7 +20,7 @@ export default function About() {
           {/* Header */}
           <motion.div initial="hidden" whileInView="visible" viewport={{once:true,amount:0.3}} variants={stagger} className="text-center mb-20">
             <motion.div variants={fadeUp}><span className="section-tag">About Neura AI</span></motion.div>
-            <motion.h2 variants={fadeUp} className="font-display text-4xl lg:text-6xl text-white leading-tight mt-2 mb-5">
+            <motion.h2 variants={fadeUp} className="font-display text-3xl lg:text-5xl text-white leading-tight mt-2 mb-5">
               We develop affordable<br/>medical solutions.<br/><span className="italic" style={{background:'linear-gradient(135deg,#ffffff 0%,#00c9a7 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>Built for everyone.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-white/50 text-lg max-w-2xl mx-auto leading-relaxed font-light">
@@ -64,12 +64,12 @@ export default function About() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <NeuraLogo variant="logomain" height={26} />
+                  <NeuraLogo variant="dark" height={54} />
                   <span className="text-xs font-semibold text-text-mid bg-cream px-3 py-1 rounded-full border border-black/8">Education Division</span>
                 </div>
                 <h3 className="font-display text-3xl lg:text-4xl text-primary mt-4 mb-4">
                   Introducing{' '}
-                  <span style={{background:'linear-gradient(135deg,#0071e3,#00c9a7)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>
+                  <span style={{background:'linear-gradient(135deg,#0066cc,#00c9a7)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>
                     NeuraEDU
                   </span>
                 </h3>

@@ -156,9 +156,9 @@ const STATS = [
 
 export default function Hero() {
   return (
-    <section id="home" style={{background:'#0a0f1e',minHeight:'100vh',display:'flex',alignItems:'center',position:'relative',overflow:'hidden',paddingTop:52}}>
+    <section id="home" style={{background:'#1d1d1f',minHeight:'100vh',display:'flex',alignItems:'center',position:'relative',overflow:'hidden',paddingTop:92}}>
       <div style={{position:'absolute',inset:0,pointerEvents:'none'}}>
-        <div style={{position:'absolute',top:'20%',left:'15%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(0,113,227,0.09) 0%,transparent 70%)'}}/>
+        <div style={{position:'absolute',top:'20%',left:'15%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(0,102,204,0.09) 0%,transparent 70%)'}}/>
       </div>
 
       <div style={{maxWidth:1280,margin:'0 auto',padding:'40px 40px',width:'100%',display:'grid',gridTemplateColumns:'1fr 1fr',gap:60,alignItems:'center',position:'relative',zIndex:1}}>
@@ -167,6 +167,7 @@ export default function Hero() {
         <div>
           {/* Stats — first, always */}
           <motion.div initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} transition={{delay:0.05,duration:0.7}}
+            id="hero-stats-grid"
             style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',border:'1px solid rgba(255,255,255,0.07)',borderRadius:14,overflow:'hidden',marginBottom:32,background:'rgba(255,255,255,0.025)'}}>
             {STATS.map((s,i)=>(
               <motion.div key={s.label}
@@ -174,7 +175,7 @@ export default function Hero() {
                 transition={{delay:0.1+i*0.08,duration:0.6,ease:[0.22,1,0.36,1]}}
                 style={{padding:'18px 10px',textAlign:'center',borderRight:i<3?'1px solid rgba(255,255,255,0.06)':'none',position:'relative',overflow:'hidden'}}>
                 {i===0&&<div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 100%,rgba(0,201,167,0.14) 0%,transparent 70%)'}}/>}
-                <div style={{fontFamily:"'DM Serif Display',Georgia,serif",fontSize:'clamp(26px,3vw,44px)',color:s.color,lineHeight:1,marginBottom:5,position:'relative',textShadow:i===0?'0 0 24px rgba(0,201,167,0.5)':'none'}}>{s.num}</div>
+                <div style={{fontFamily:"Inter,-apple-system,sans-serif",fontWeight:800,fontSize:'clamp(26px,3vw,44px)',color:s.color,lineHeight:1,marginBottom:5,position:'relative',textShadow:i===0?'0 0 24px rgba(0,201,167,0.5)':'none'}}>{s.num}</div>
                 <div style={{color:'rgba(255,255,255,0.32)',fontSize:9,fontFamily:"Inter,-apple-system,sans-serif",fontWeight:600,letterSpacing:'0.08em',textTransform:'uppercase',lineHeight:1.5,whiteSpace:'pre-line',position:'relative'}}>{s.label}</div>
               </motion.div>
             ))}
@@ -197,7 +198,7 @@ export default function Hero() {
 
           {/* Headline — confident, product-company, no motivational fluff */}
           <motion.h1 initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} transition={{delay:0.28,duration:0.7,ease:[0.22,1,0.36,1]}}
-            style={{fontFamily:"'DM Serif Display',Georgia,serif",fontSize:'clamp(32px,4vw,54px)',color:'white',lineHeight:1.1,letterSpacing:'-0.02em',margin:'0 0 16px'}}>
+            style={{fontFamily:"Inter,-apple-system,sans-serif",fontWeight:800,fontSize:'clamp(32px,4vw,54px)',color:'white',lineHeight:1.05,letterSpacing:'-0.03em',margin:'0 0 16px'}}>
             Affordable medical solutions.<br/>
             <span style={{color:'#00c9a7'}}>Built for everyone.</span>
           </motion.h1>
@@ -212,13 +213,13 @@ export default function Hero() {
           <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.42,duration:0.5}}
             style={{display:'flex',flexWrap:'wrap',gap:10}}>
             <button onClick={()=>window.registerFor('rnd')} style={{
-              background:'#0071e3',color:'white',border:'none',cursor:'pointer',
+              background:'#0066cc',color:'white',border:'none',cursor:'pointer',
               padding:'13px 26px',borderRadius:24,fontSize:13,fontWeight:600,
               fontFamily:"Inter,-apple-system,sans-serif",
-              boxShadow:'0 4px 20px rgba(0,113,227,0.4)',transition:'all 0.2s',
+              boxShadow:'0 4px 20px rgba(0,102,204,0.4)',transition:'all 0.2s',
             }}
-              onMouseEnter={e=>{e.currentTarget.style.background='#2997ff';e.currentTarget.style.transform='translateY(-2px)';}}
-              onMouseLeave={e=>{e.currentTarget.style.background='#0071e3';e.currentTarget.style.transform='none';}}>
+              onMouseEnter={e=>{e.currentTarget.style.background='#147ce5';e.currentTarget.style.transform='translateY(-2px)';}}
+              onMouseLeave={e=>{e.currentTarget.style.background='#0066cc';e.currentTarget.style.transform='none';}}>
               Get Started
             </button>
             <button onClick={()=>scrollTo('about')} style={{
@@ -238,7 +239,7 @@ export default function Hero() {
         <motion.div initial={{opacity:0,x:30}} animate={{opacity:1,x:0}} transition={{duration:1,delay:0.3}}
           style={{position:'relative',height:520,borderRadius:20,overflow:'hidden',
             border:'1px solid rgba(0,201,167,0.08)',
-            background:'radial-gradient(ellipse at 50% 35%,rgba(0,113,227,0.05) 0%,rgba(10,15,30,0.98) 70%)'}}>
+            background:'radial-gradient(ellipse at 50% 35%,rgba(0,102,204,0.05) 0%,rgba(29,29,31,0.98) 70%)'}}>
           <div style={{position:'absolute',inset:0}}><BrainCanvas/></div>
           {/* Legend */}
           <div style={{position:'absolute',bottom:14,left:16,right:16,display:'flex',justifyContent:'space-between',alignItems:'center'}}>
@@ -257,7 +258,35 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <style>{`@media(max-width:900px){#home>div{grid-template-columns:1fr!important;}#home>div>div:last-child{height:340px!important;}}`}</style>
+      <style>{`
+        @media (max-width: 900px) {
+          #home > div:nth-of-type(2) {
+            grid-template-columns: 1fr !important;
+            gap: 36px !important;
+            padding: 28px 20px !important;
+          }
+          #home > div:nth-of-type(2) > div:last-child {
+            height: 320px !important;
+            order: -1;
+          }
+        }
+        @media (max-width: 480px) {
+          #hero-stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          #hero-stats-grid > div:nth-child(2) {
+            border-right: none !important;
+          }
+        }
+        @media (max-width: 600px) {
+          #home {
+            padding-top: 56px !important;
+          }
+          #home > div:nth-of-type(2) {
+            padding: 24px 16px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

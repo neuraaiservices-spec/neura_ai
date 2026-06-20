@@ -21,7 +21,7 @@ const news = [
   {
     type: '🚀 Event',
     badge: 'VentureConnect 2026',
-    badgeColor: '#0071e3',
+    badgeColor: '#0066cc',
     date: '2026',
     title: 'Oviya Ravi leads team at VentureConnect 2026',
     desc: 'Representing the Smart Jaundice Detection project as Team Lead at VentureConnect 2026 — a premier innovation and entrepreneurship platform bringing together the next generation of healthcare innovators.',
@@ -49,7 +49,7 @@ export default function Impact() {
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mt-2">
             <motion.h2 variants={fadeUp} className="font-display text-3xl lg:text-5xl text-white max-w-xl leading-tight">
               Our work is getting<br/>
-              <span style={{background:'linear-gradient(135deg,#00c9a7,#0071e3)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>
+              <span style={{background:'linear-gradient(135deg,#00c9a7,#0066cc)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>
                 noticed.
               </span>
             </motion.h2>
@@ -83,10 +83,10 @@ export default function Impact() {
 
               {/* No photo — gradient bg */}
               {!item.img && (
-                <div className="h-24 relative overflow-hidden" style={{background:'linear-gradient(135deg,rgba(0,113,227,0.15),rgba(0,201,167,0.08))'}}>
+                <div className="h-24 relative overflow-hidden" style={{background:'linear-gradient(135deg,rgba(0,102,204,0.15),rgba(0,201,167,0.08))'}}>
                   <div className="absolute top-4 left-6 flex items-center gap-2">
                     <span className="text-2xl">🚀</span>
-                    <span style={{color:'#2997ff',fontSize:12,fontWeight:700,fontFamily:"Inter, -apple-system, sans-serif",letterSpacing:'0.05em'}}>VentureConnect 2026</span>
+                    <span style={{color:'#147ce5',fontSize:12,fontWeight:700,fontFamily:"Inter, -apple-system, sans-serif",letterSpacing:'0.05em'}}>VentureConnect 2026</span>
                   </div>
                 </div>
               )}
@@ -122,7 +122,7 @@ export default function Impact() {
                   style={{
                     display:'inline-flex', alignItems:'center', gap:8,
                     background:'rgba(10,102,194,0.15)', border:'1px solid rgba(10,102,194,0.3)',
-                    color:'#2997ff', padding:'8px 16px', borderRadius:20,
+                    color:'#147ce5', padding:'8px 16px', borderRadius:20,
                     fontSize:12, fontWeight:600,
                     fontFamily:"Inter, -apple-system, sans-serif",
                     textDecoration:'none', transition:'all 0.2s',
@@ -147,12 +147,12 @@ export default function Impact() {
           </p>
           <button onClick={() => { window.dispatchEvent(new CustomEvent('neura:selectProgram',{detail:'rnd'})); document.getElementById('register')?.scrollIntoView({behavior:'smooth'}); }}
             style={{
-              background:'linear-gradient(135deg,#0071e3,#00c9a7)',
+              background:'linear-gradient(135deg,#0066cc,#00c9a7)',
               color:'white', border:'none', cursor:'pointer',
               padding:'14px 36px', borderRadius:24,
               fontSize:14, fontWeight:700,
               fontFamily:"Inter, -apple-system, sans-serif",
-              boxShadow:'0 8px 32px rgba(0,113,227,0.3)',
+              boxShadow:'0 8px 32px rgba(0,102,204,0.3)',
             }}>
             Work with Neura AI →
           </button>

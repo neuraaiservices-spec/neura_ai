@@ -87,17 +87,17 @@ export default function WorkshopJuly18() {
   const scrollToForm = () => document.getElementById('workshop-register')?.scrollIntoView({behavior:'smooth'});
 
   return (
-    <div style={{background:'#080c18', minHeight:'100vh'}}>
+    <div style={{background:'#1d1d1f', minHeight:'100vh'}}>
 
       {/* Header */}
       <header style={{
         padding:'22px 40px', borderBottom:'1px solid rgba(255,255,255,0.05)',
         position:'sticky', top:0, zIndex:50,
-        background:'rgba(8,12,24,0.85)', backdropFilter:'blur(20px)',
+        background:'rgba(29,29,31,0.85)', backdropFilter:'blur(20px)',
       }}>
         <div style={{maxWidth:1100, margin:'0 auto', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
           <a href="/" style={{display:'inline-flex'}}>
-            <NeuraLogo variant="white" height={28} />
+            <NeuraLogo variant="white" height={56} />
           </a>
           <span style={{
             fontSize:10, color:'rgba(255,255,255,0.3)', fontFamily:"Inter,-apple-system,sans-serif",
@@ -109,7 +109,7 @@ export default function WorkshopJuly18() {
       {/* Hero */}
       <section style={{padding:'88px 40px 64px', position:'relative', overflow:'hidden'}}>
         <AmbientCanvas />
-        <div style={{position:'absolute',inset:0,pointerEvents:'none',background:'radial-gradient(ellipse at 50% 0%, rgba(0,113,227,0.08) 0%, transparent 60%)'}}/>
+        <div style={{position:'absolute',inset:0,pointerEvents:'none',background:'radial-gradient(ellipse at 50% 0%, rgba(0,102,204,0.08) 0%, transparent 60%)'}}/>
 
         <div style={{maxWidth:760, margin:'0 auto', textAlign:'center', position:'relative', zIndex:1}}>
           <motion.div initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} transition={{duration:0.6}}>
@@ -128,9 +128,9 @@ export default function WorkshopJuly18() {
 
           <motion.h1 initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} transition={{duration:0.7,delay:0.1}}
             style={{
-              fontFamily:"'DM Serif Display',Georgia,serif",
+              fontFamily:"Inter,-apple-system,sans-serif", fontWeight:800,
               fontSize:'clamp(36px,5.2vw,68px)', color:'white',
-              lineHeight:1.08, letterSpacing:'-0.02em', marginBottom:22,
+              lineHeight:1.04, letterSpacing:'-0.035em', marginBottom:22,
             }}>
             AI in Healthcare<br/><span style={{color:'#00c9a7'}}>Workshop</span>
           </motion.h1>
@@ -144,13 +144,13 @@ export default function WorkshopJuly18() {
           <motion.div initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} transition={{duration:0.6,delay:0.3}}
             style={{display:'flex', gap:14, justifyContent:'center', flexWrap:'wrap', alignItems:'center'}}>
             <button onClick={scrollToForm} style={{
-              background:'#0071e3', color:'white', border:'none', cursor:'pointer',
+              background:'#0066cc', color:'white', border:'none', cursor:'pointer',
               padding:'15px 34px', borderRadius:26, fontSize:14.5, fontWeight:600,
               fontFamily:"Inter,-apple-system,sans-serif",
-              boxShadow:'0 8px 30px rgba(0,113,227,0.35)', transition:'all 0.25s',
+              boxShadow:'0 8px 30px rgba(0,102,204,0.35)', transition:'all 0.25s',
             }}
-              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-2px)';e.currentTarget.style.boxShadow='0 12px 36px rgba(0,113,227,0.45)';}}
-              onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.boxShadow='0 8px 30px rgba(0,113,227,0.35)';}}>
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-2px)';e.currentTarget.style.boxShadow='0 12px 36px rgba(0,102,204,0.45)';}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.boxShadow='0 8px 30px rgba(0,102,204,0.35)';}}>
               Register — ₹1,000
             </button>
             <span style={{color:'rgba(255,255,255,0.3)', fontSize:12.5, fontFamily:"Inter,-apple-system,sans-serif"}}>Limited seats · Certificate provided</span>
@@ -161,6 +161,7 @@ export default function WorkshopJuly18() {
       {/* Key details strip */}
       <section style={{padding:'0 40px 64px'}}>
         <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}}
+          id="workshop-details-strip"
           style={{
             maxWidth:920, margin:'0 auto', display:'grid', gridTemplateColumns:'repeat(4,1fr)',
             border:'1px solid rgba(255,255,255,0.07)', borderRadius:18, overflow:'hidden',
@@ -172,7 +173,7 @@ export default function WorkshopJuly18() {
             {icon:'📍', label:'Venue', value:'IITM Research Park'},
             {icon:'💻', label:'Format', value:'Hybrid'},
           ].map((d,i) => (
-            <div key={d.label} style={{
+            <div key={d.label} className="workshop-detail-item" style={{
               padding:'28px 16px', textAlign:'center',
               borderRight: i<3 ? '1px solid rgba(255,255,255,0.06)' : 'none',
             }}>
@@ -186,19 +187,19 @@ export default function WorkshopJuly18() {
 
       {/* Agenda timeline + Venue map */}
       <section style={{padding:'0 40px 64px'}}>
-        <div style={{maxWidth:920, margin:'0 auto', display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:48}}>
+        <div id="workshop-agenda-venue" style={{maxWidth:920, margin:'0 auto', display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:48}}>
 
           {/* Agenda */}
           <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}}>
             <p style={{fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'#00c9a7', marginBottom:14, fontFamily:"Inter,-apple-system,sans-serif"}}>The Day</p>
-            <h2 style={{fontFamily:"'DM Serif Display',Georgia,serif", fontSize:23, color:'white', marginBottom:26}}>How the workshop runs</h2>
+            <h2 style={{fontFamily:"Inter,-apple-system,sans-serif", fontWeight:700, letterSpacing:'-0.02em', fontSize:23, color:'white', marginBottom:26}}>How the workshop runs</h2>
             <AgendaTimeline />
           </motion.div>
 
           {/* Venue with embedded map */}
           <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6,delay:0.1}}>
             <p style={{fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'#00c9a7', marginBottom:14, fontFamily:"Inter,-apple-system,sans-serif"}}>Venue</p>
-            <h2 style={{fontFamily:"'DM Serif Display',Georgia,serif", fontSize:23, color:'white', marginBottom:18}}>IITM Research Park</h2>
+            <h2 style={{fontFamily:"Inter,-apple-system,sans-serif", fontWeight:700, letterSpacing:'-0.02em', fontSize:23, color:'white', marginBottom:18}}>IITM Research Park</h2>
 
             {/* Embedded Google Map */}
             <div style={{
@@ -236,10 +237,10 @@ export default function WorkshopJuly18() {
 
       {/* What's included / Who it's for */}
       <section style={{padding:'0 40px 64px'}}>
-        <div style={{maxWidth:920, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:48}}>
+        <div id="workshop-included-forwhom" style={{maxWidth:920, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:48}}>
           <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}}>
             <p style={{fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'#00c9a7', marginBottom:14, fontFamily:"Inter,-apple-system,sans-serif"}}>What's Included</p>
-            <h2 style={{fontFamily:"'DM Serif Display',Georgia,serif", fontSize:23, color:'white', marginBottom:22}}>Everything you need for the day</h2>
+            <h2 style={{fontFamily:"Inter,-apple-system,sans-serif", fontWeight:700, letterSpacing:'-0.02em', fontSize:23, color:'white', marginBottom:22}}>Everything you need for the day</h2>
             {[
               'Interactive, practical session led by an industry expert',
               'A real-world AI project-building challenge',
@@ -248,7 +249,7 @@ export default function WorkshopJuly18() {
               'Workshop kit and resources',
             ].map(item => (
               <div key={item} style={{display:'flex', gap:11, marginBottom:15}}>
-                <span style={{color:'#00c9a7', flexShrink:0, marginTop:1}}>✓</span>
+                <span style={{color:'#00c9a7', flexShrink:0, marginTop:1}}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
                 <p style={{color:'rgba(255,255,255,0.55)', fontSize:14, lineHeight:1.65, fontFamily:"Inter,-apple-system,sans-serif", fontWeight:300}}>{item}</p>
               </div>
             ))}
@@ -256,10 +257,10 @@ export default function WorkshopJuly18() {
 
           <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6,delay:0.1}}>
             <p style={{fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'#00c9a7', marginBottom:14, fontFamily:"Inter,-apple-system,sans-serif"}}>Who It's For</p>
-            <h2 style={{fontFamily:"'DM Serif Display',Georgia,serif", fontSize:23, color:'white', marginBottom:22}}>Open to all backgrounds</h2>
+            <h2 style={{fontFamily:"Inter,-apple-system,sans-serif", fontWeight:700, letterSpacing:'-0.02em', fontSize:23, color:'white', marginBottom:22}}>Open to all backgrounds</h2>
             {['Students', 'Faculty', 'Researchers', 'Working Professionals'].map(item => (
               <div key={item} style={{display:'flex', gap:11, marginBottom:15}}>
-                <span style={{color:'#00c9a7', flexShrink:0, marginTop:1}}>✓</span>
+                <span style={{color:'#00c9a7', flexShrink:0, marginTop:1}}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
                 <p style={{color:'rgba(255,255,255,0.55)', fontSize:14, lineHeight:1.65, fontFamily:"Inter,-apple-system,sans-serif", fontWeight:300}}>{item}</p>
               </div>
             ))}
@@ -272,7 +273,7 @@ export default function WorkshopJuly18() {
         <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}}
           style={{maxWidth:640, margin:'0 auto'}}>
           <div style={{textAlign:'center', marginBottom:26}}>
-            <p style={{fontFamily:"'DM Serif Display',Georgia,serif", fontSize:25, color:'white', marginBottom:8}}>Reserve your seat</p>
+            <p style={{fontFamily:"Inter,-apple-system,sans-serif", fontWeight:700, letterSpacing:'-0.02em', fontSize:25, color:'white', marginBottom:8}}>Reserve your seat</p>
             <p style={{color:'rgba(255,255,255,0.45)', fontSize:13.5, fontFamily:"Inter,-apple-system,sans-serif"}}>17 July · IITM Research Park · ₹1,000</p>
           </div>
 
@@ -304,6 +305,25 @@ export default function WorkshopJuly18() {
           Organised by NeuraEDU — the education division of Neura AI.
         </p>
       </footer>
+
+      {/* Mobile responsive */}
+      <style>{`
+        @media (max-width: 900px) {
+          #workshop-agenda-venue { grid-template-columns: 1fr !important; gap: 40px !important; }
+          #workshop-included-forwhom { grid-template-columns: 1fr !important; gap: 36px !important; }
+        }
+        @media (max-width: 700px) {
+          #workshop-details-strip { grid-template-columns: repeat(2, 1fr) !important; }
+          .workshop-detail-item:nth-child(2) { border-right: none !important; }
+          .workshop-detail-item:nth-child(1),
+          .workshop-detail-item:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
+        }
+        @media (max-width: 640px) {
+          header { padding: 16px 20px !important; }
+          section { padding-left: 20px !important; padding-right: 20px !important; }
+          footer { padding: 24px 20px !important; }
+        }
+      `}</style>
     </div>
   );
 }

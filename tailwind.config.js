@@ -4,11 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary:      '#0a0f1e',
-        'primary-mid':'#111827',
-        'primary-card':'#1a2235',
-        blue:         '#0071e3',
-        'blue-light': '#2997ff',
+        primary:      '#1d1d1f',
+        'primary-mid':'#2c2c2e',
+        'primary-card':'#3a3a3c',
+        blue:         '#0066cc',
+        'blue-light': '#147ce5',
         teal:         '#00c9a7',
         'teal-dim':   '#00a688',
         cream:        '#f5f5f7',
@@ -16,7 +16,7 @@ export default {
       },
       fontFamily: {
         sans:    ['Inter','-apple-system','BlinkMacSystemFont','sans-serif'],
-        display: ['DM Serif Display','Georgia','serif'],
+        display: ['Inter','-apple-system','BlinkMacSystemFont','sans-serif'],
       },
       animation: {
         'fade-in':    'fadeIn 0.8s ease forwards',

@@ -14,16 +14,15 @@ const items = [
   { video: video4, name:'Student Testimonial 4', program:'R&D Training', college:'Online', quote:'A transformative journey — real R&D experience that elevated my skills and career prospects.' },
 ];
 
-function NetflixCard({ item, idx, onPlay }) {
+function NetflixCard({ item, idx, onPlay, isHovered, onHoverStart, onHoverEnd }) {
   const videoRef = useRef(null);
-  const [hovered, setHovered] = useState(false);
 
   const handleMouseEnter = () => {
-    setHovered(true);
+    onHoverStart();
     if (videoRef.current) { videoRef.current.play(); }
   };
   const handleMouseLeave = () => {
-    setHovered(false);
+    onHoverEnd();
     if (videoRef.current) { videoRef.current.pause(); videoRef.current.currentTime = 0; }
   };
 
@@ -35,50 +34,95 @@ function NetflixCard({ item, idx, onPlay }) {
       transition={{ duration:0.5, delay:idx*0.1 }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative rounded-xl overflow-hidden cursor-pointer group"
-      style={{ aspectRatio:'16/9' }}
       onClick={() => onPlay(item.video)}
+      style={{
+        position: 'relative',
+        height: '100%',
+        cursor: 'pointer',
+        borderRadius: 14,
+        boxShadow: isHovered
+          ? '0 20px 50px rgba(0,0,0,0.65), 0 0 0 1px rgba(0,201,167,0.3)'
+          : '0 4px 16px rgba(0,0,0,0.3)',
+        transition: 'box-shadow 0.3s ease',
+      }}
     >
-      {/* Video thumbnail */}
-      <video
-        ref={videoRef}
-        src={item.video}
-        muted
-        loop
-        preload="metadata"
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-      />
+      {/* Outer box never scales and never clips — guarantees name/text can never
+          be cut off regardless of browser transform+overflow edge cases. */}
+      <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: 14, overflow: 'hidden' }}>
 
-      {/* Dark gradient always */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+        {/* Only the video scales — text overlay below is never inside a scaled element */}
+        <video
+          ref={videoRef}
+          src={item.video}
+          muted
+          loop
+          preload="metadata"
+          style={{
+            width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+            transform: isHovered ? 'scale(1.08)' : 'scale(1)',
+            transition: 'transform 0.4s cubic-bezier(0.22,1,0.36,1)',
+          }}
+        />
 
-      {/* Play button — visible when not hovered */}
-      <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${hovered ? 'opacity-0' : 'opacity-100'}`}>
-        <div className="w-14 h-14"><Lottie animationData={videoPlay} loop /></div>
-      </div>
+        {/* Dark gradient always */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.1) 45%, transparent 75%)',
+        }} />
 
-      {/* Hover overlay — Netflix-style info */}
-      <div className={`absolute inset-0 flex flex-col justify-end p-4 transition-all duration-300 ${hovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
-        <div className="bg-black/70 backdrop-blur-sm rounded-xl p-3">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="bg-teal text-primary text-xs font-bold px-2 py-0.5 rounded-full">{item.program}</span>
-            <span className="text-white/50 text-xs">{item.college}</span>
+        {/* Play button — visible when not hovered */}
+        <div style={{
+          position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease',
+        }}>
+          <div style={{ width: 48, height: 48 }}><Lottie animationData={videoPlay} loop /></div>
+        </div>
+
+        {/* Info block — fixed position, only translateY (no scale), generous space */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 12px',
+          opacity: isHovered ? 1 : 0,
+          transform: isHovered ? 'translateY(0)' : 'translateY(6px)',
+          transition: 'opacity 0.25s ease, transform 0.25s ease',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 7, flexWrap: 'wrap' }}>
+            <span style={{
+              background: '#00c9a7', color: '#1d1d1f', fontSize: 9.5, fontWeight: 700,
+              padding: '2px 8px', borderRadius: 10, fontFamily: "Inter,-apple-system,sans-serif",
+              whiteSpace: 'nowrap',
+            }}>{item.program}</span>
+            <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 10.5, fontFamily: "Inter,-apple-system,sans-serif" }}>{item.college}</span>
           </div>
-          <p className="text-white text-xs leading-relaxed italic">"{item.quote}"</p>
-          <div className="flex items-center gap-2 mt-2">
-            <div className="w-6 h-6 rounded-full bg-teal/20 flex items-center justify-center">
-              <span className="text-teal text-xs font-bold">{item.name[0]}</span>
+          <p style={{
+            color: 'white', fontSize: 11, lineHeight: 1.45, fontStyle: 'italic', margin: '0 0 8px',
+            fontFamily: "Inter,-apple-system,sans-serif", fontWeight: 300,
+            display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+          }}>"{item.quote}"</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+            <div style={{
+              width: 20, height: 20, borderRadius: '50%', background: 'rgba(0,201,167,0.2)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+            }}>
+              <span style={{ color: '#00c9a7', fontSize: 10, fontWeight: 700 }}>{item.name[0]}</span>
             </div>
-            <span className="text-white/70 text-xs font-semibold">{item.name}</span>
+            {/* Full name — no truncation. Card width (240px) comfortably fits names like
+                "Student Testimonial 1" at this font size; ellipsis removed entirely. */}
+            <span style={{
+              color: 'rgba(255,255,255,0.75)', fontSize: 11, fontWeight: 600,
+              fontFamily: "Inter,-apple-system,sans-serif", lineHeight: 1.3,
+            }}>{item.name}</span>
           </div>
         </div>
-      </div>
 
-      {/* Top badge */}
-      <div className="absolute top-3 left-3">
-        <span className="bg-black/60 backdrop-blur-sm text-white/70 text-xs font-semibold px-2.5 py-1 rounded-full border border-white/10">
-          ▶ Student Story
-        </span>
+        {/* Top badge — always visible, never collides with bottom info since they're far apart on a tall card */}
+        <div style={{ position: 'absolute', top: 10, left: 10 }}>
+          <span style={{
+            background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(6px)',
+            color: 'rgba(255,255,255,0.75)', fontSize: 10, fontWeight: 600,
+            padding: '4px 9px', borderRadius: 20, border: '1px solid rgba(255,255,255,0.1)',
+            fontFamily: "Inter,-apple-system,sans-serif", whiteSpace: 'nowrap',
+          }}>▶ Student Story</span>
+        </div>
       </div>
     </motion.div>
   );
@@ -86,53 +130,143 @@ function NetflixCard({ item, idx, onPlay }) {
 
 export default function Testimonials() {
   const [open, setOpen] = useState(null);
+  const scrollerRef = useRef(null);
+  const [canLeft, setCanLeft] = useState(false);
+  const [canRight, setCanRight] = useState(true);
 
   const openModal = (v) => { setOpen(v); document.body.style.overflow = 'hidden'; };
   const closeModal = () => { setOpen(null); document.body.style.overflow = 'auto'; };
 
-  return (
-    <section id="testimonials" className="py-20 lg:py-28 bg-primary">
-      <div className="max-w-7xl mx-auto px-5 lg:px-10">
+  const updateArrows = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 8);
+    setCanRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 8);
+  };
 
-        {/* Netflix-style header */}
-        <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}} className="flex items-end justify-between mb-8">
-          <div>
-            <div className="inline-block text-xs font-bold uppercase tracking-widest text-teal bg-teal/10 px-4 py-1.5 rounded-full mb-4">From our students</div>
-            <h2 className="font-display text-3xl lg:text-4xl text-white">What students say.</h2>
-          </div>
-          <div className="hidden md:flex items-center gap-2 text-white/40 text-sm font-medium">
-            <span>Hover to preview</span>
-            <span>·</span>
-            <span>Click to watch</span>
+  const scrollBy = (dir) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const cardWidth = el.firstChild ? el.firstChild.offsetWidth + 16 : 280;
+    el.scrollBy({ left: dir * cardWidth * 2, behavior: 'smooth' });
+  };
+
+  const [hoveredIdx, setHoveredIdx] = useState(null);
+
+  return (
+    <section id="testimonials" style={{ padding: '80px 0', background: '#1d1d1f', overflow: 'hidden' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px' }}>
+
+        {/* Header */}
+        <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}} style={{ marginBottom: 32 }}>
+          <span style={{
+            display: 'inline-block', fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase',
+            color: '#00c9a7', background: 'rgba(0,201,167,0.1)', padding: '5px 14px', borderRadius: 20,
+            marginBottom: 16, fontFamily: "Inter,-apple-system,sans-serif",
+          }}>From our students</span>
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+            <h2 style={{
+              fontFamily: "Inter,-apple-system,sans-serif", fontWeight: 800, letterSpacing: '-0.03em',
+              fontSize: 'clamp(28px,3.5vw,48px)', color: 'white', margin: 0,
+            }}>What students say.</h2>
+            <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: 13, fontFamily: "Inter,-apple-system,sans-serif" }}>
+              Hover to preview · Click to watch
+            </span>
           </div>
         </motion.div>
 
-        {/* Netflix grid — 2x2 on desktop, 1 col mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
-          {items.map((item, i) => (
-            <NetflixCard key={i} item={item} idx={i} onPlay={openModal} />
-          ))}
+        {/* Netflix-style horizontal scroller */}
+        <div style={{ position: 'relative', paddingTop: 24, paddingBottom: 24, marginLeft: -40, marginRight: -40, paddingLeft: 40, paddingRight: 40 }}>
+
+          {canLeft && (
+            <button onClick={() => scrollBy(-1)} aria-label="Scroll left" style={{
+              position: 'absolute', left: 4, top: '50%', transform: 'translateY(-50%)', zIndex: 50,
+              width: 38, height: 38, borderRadius: '50%', border: 'none', cursor: 'pointer',
+              background: 'rgba(29,29,31,0.92)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.5)', backdropFilter: 'blur(6px)',
+            }}>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+          )}
+          {canRight && (
+            <button onClick={() => scrollBy(1)} aria-label="Scroll right" style={{
+              position: 'absolute', right: 4, top: '50%', transform: 'translateY(-50%)', zIndex: 50,
+              width: 38, height: 38, borderRadius: '50%', border: 'none', cursor: 'pointer',
+              background: 'rgba(29,29,31,0.92)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.5)', backdropFilter: 'blur(6px)',
+            }}>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          )}
+
+          <div style={{ position: 'absolute', left: 0, top: 24, bottom: 24, width: 60, background: 'linear-gradient(to right, #1d1d1f, transparent)', zIndex: 30, pointerEvents: 'none', opacity: canLeft ? 1 : 0, transition: 'opacity 0.3s' }} />
+          <div style={{ position: 'absolute', right: 0, top: 24, bottom: 24, width: 60, background: 'linear-gradient(to left, #1d1d1f, transparent)', zIndex: 30, pointerEvents: 'none', opacity: canRight ? 1 : 0, transition: 'opacity 0.3s' }} />
+
+          <div
+            ref={scrollerRef}
+            onScroll={updateArrows}
+            id="testimonial-scroller"
+            style={{ display: 'flex', gap: 24, overflowX: 'auto', overflowY: 'visible', scrollSnapType: 'x mandatory', scrollbarWidth: 'none' }}
+          >
+            {items.map((item, i) => (
+              <div key={i} style={{
+                flex: '0 0 auto', width: 240, height: 410, scrollSnapAlign: 'start',
+                position: 'relative', zIndex: hoveredIdx === i ? 30 : 1,
+              }}>
+                <NetflixCard
+                  item={item} idx={i} onPlay={openModal}
+                  isHovered={hoveredIdx === i}
+                  onHoverStart={() => setHoveredIdx(i)}
+                  onHoverEnd={() => setHoveredIdx(null)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
-        <motion.p initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true}} transition={{delay:0.5}}
-          className="text-white/25 text-xs text-center mt-6">
-          Hover to preview · Click to watch full story
-        </motion.p>
+        <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: 12, textAlign: 'center', marginTop: 12, fontFamily: "Inter,-apple-system,sans-serif" }}>
+          Scroll to see all stories
+        </p>
 
-        {/* Modal */}
+        {/* Modal — sizes to the video's natural orientation, not forced wide.
+            Portrait recordings get a tall player; landscape get a wide one. */}
         <AnimatePresence>
           {open && (
             <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
-              className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4" onClick={closeModal}>
-              <motion.div initial={{scale:0.85,opacity:0}} animate={{scale:1,opacity:1}} exit={{scale:0.85,opacity:0}} transition={{duration:0.3}}
-                className="relative w-full max-w-4xl" onClick={e => e.stopPropagation()}>
-                <button onClick={closeModal} className="absolute -top-12 right-0 text-white/70 hover:text-white text-4xl leading-none font-light">×</button>
-                <video src={open} controls autoPlay className="w-full rounded-2xl shadow-2xl" />
+              style={{
+                position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.96)', zIndex: 60,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
+              }} onClick={closeModal}>
+              <motion.div initial={{scale:0.9,opacity:0}} animate={{scale:1,opacity:1}} exit={{scale:0.92,opacity:0}} transition={{duration:0.25}}
+                style={{ position: 'relative', maxHeight: '90vh', maxWidth: '90vw' }}
+                onClick={e => e.stopPropagation()}>
+                <button onClick={closeModal} aria-label="Close video" style={{
+                  position: 'absolute', top: -42, right: 0, background: 'none', border: 'none',
+                  color: 'rgba(255,255,255,0.7)', fontSize: 32, lineHeight: 1, cursor: 'pointer', fontWeight: 300,
+                }}>×</button>
+                <video
+                  src={open} controls autoPlay
+                  style={{
+                    display: 'block', maxHeight: '90vh', maxWidth: '90vw',
+                    width: 'auto', height: 'auto', borderRadius: 16,
+                    boxShadow: '0 30px 80px rgba(0,0,0,0.7)',
+                  }}
+                />
               </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
+
+      <style>{`
+        #testimonial-scroller::-webkit-scrollbar { display: none; }
+        @media (max-width: 640px) {
+          #testimonial-scroller > div { width: 185px !important; height: 315px !important; }
+        }
+        @media (hover: none) {
+          #testimonial-scroller > div > div { transform: none !important; }
+        }
+      `}</style>
     </section>
   );
 }

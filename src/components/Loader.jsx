@@ -123,7 +123,7 @@ export default function Loader() {
 
   return (
     <div style={{
-      position:'fixed', inset:0, background:'#0a0f1e',
+      position:'fixed', inset:0, background:'#1d1d1f',
       display:'flex', flexDirection:'column',
       alignItems:'center', justifyContent:'center', zIndex:9999,
     }}>
@@ -131,7 +131,7 @@ export default function Loader() {
       <canvas ref={canvasRef} style={{display:'block', marginBottom:32}} />
 
       {/* Logo */}
-      <NeuraLogo variant="white" height={36} />
+      <NeuraLogo variant="white" height={76} />
 
       {/* Phase text */}
       <p style={{
@@ -146,7 +146,7 @@ export default function Loader() {
       <div style={{width:160,height:1.5,background:'rgba(255,255,255,0.07)',borderRadius:2,overflow:'hidden'}}>
         <div style={{
           height:'100%', borderRadius:2,
-          background:'linear-gradient(90deg,#0071e3,#00c9a7)',
+          background:'linear-gradient(90deg,#0066cc,#00c9a7)',
           width:`${progress}%`, transition:'width 30ms linear',
           boxShadow:'0 0 10px rgba(0,201,167,0.6)',
         }}/>

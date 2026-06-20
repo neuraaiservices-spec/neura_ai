@@ -82,9 +82,10 @@ function LightboxModal({ project, onClose }) {
         exit={{ scale: 0.94, opacity: 0, y: 10 }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         onClick={e => e.stopPropagation()}
+        id="poc-lightbox-modal"
         style={{
           width: '100%', maxWidth: 900,
-          background: '#111827',
+          background: '#2c2c2e',
           borderRadius: 20,
           overflow: 'hidden',
           display: 'grid',
@@ -133,7 +134,7 @@ function LightboxModal({ project, onClose }) {
           }}>{project.category}</span>
 
           <h2 style={{
-            fontFamily: "'DM Serif Display',Georgia,serif",
+            fontFamily: "Inter,-apple-system,sans-serif",
             fontSize: 26, color: 'white', marginBottom: 14, lineHeight: 1.2,
           }}>{project.title}</h2>
 
@@ -164,13 +165,13 @@ function LightboxModal({ project, onClose }) {
 
           <button onClick={() => { onClose(); window.registerFor('project'); }}
             style={{
-              background: '#0071e3', color: 'white', border: 'none', cursor: 'pointer',
+              background: '#0066cc', color: 'white', border: 'none', cursor: 'pointer',
               padding: '12px 24px', borderRadius: 24, fontSize: 13, fontWeight: 600,
               fontFamily: "Inter,-apple-system,sans-serif", transition: 'all 0.2s',
               alignSelf: 'flex-start',
             }}
-            onMouseEnter={e => e.currentTarget.style.background = '#2997ff'}
-            onMouseLeave={e => e.currentTarget.style.background = '#0071e3'}>
+            onMouseEnter={e => e.currentTarget.style.background = '#147ce5'}
+            onMouseLeave={e => e.currentTarget.style.background = '#0066cc'}>
             Discuss a Project →
           </button>
         </div>
@@ -184,8 +185,8 @@ export default function POCProjects() {
   const [lightbox, setLightbox] = useState(null);
 
   return (
-    <section id="poc" style={{ padding: '96px 0', background: '#0a0f1e' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px' }}>
+    <section id="poc" style={{ padding: '96px 0', background: '#1d1d1f' }}>
+      <div id="poc-inner" style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px' }}>
 
         {/* Header — factual, not salesy */}
         <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }}>
@@ -198,7 +199,7 @@ export default function POCProjects() {
 
           <div style={{ display:'flex', flexDirection:'column', gap:8, marginBottom:12 }}>
             <h2 style={{
-              fontFamily:"'DM Serif Display',Georgia,serif",
+              fontFamily:"Inter,-apple-system,sans-serif",
               fontSize:'clamp(28px,3.5vw,48px)', color:'white', lineHeight:1.1, margin:0,
             }}>Developed by Neura AI</h2>
             <p style={{
@@ -211,7 +212,7 @@ export default function POCProjects() {
         </motion.div>
 
         {/* Grid */}
-        <div style={{
+        <div id="poc-cards-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
           gap: 16, marginTop: 40,
@@ -243,13 +244,13 @@ export default function POCProjects() {
               {/* Gradient */}
               <div style={{
                 position:'absolute', inset:0,
-                background:'linear-gradient(to top,rgba(10,15,30,0.96) 0%,rgba(10,15,30,0.3) 55%,rgba(10,15,30,0.05) 100%)',
+                background:'linear-gradient(to top,rgba(29,29,31,0.96) 0%,rgba(29,29,31,0.3) 55%,rgba(29,29,31,0.05) 100%)',
               }}/>
 
               {/* Category badge */}
               <div style={{ position:'absolute', top:14, left:14 }}>
                 <span style={{
-                  background:'rgba(10,15,30,0.7)', backdropFilter:'blur(8px)',
+                  background:'rgba(29,29,31,0.7)', backdropFilter:'blur(8px)',
                   color:'#00c9a7', fontSize:9, fontWeight:700,
                   padding:'3px 10px', borderRadius:20,
                   fontFamily:"Inter,-apple-system,sans-serif",
@@ -269,7 +270,7 @@ export default function POCProjects() {
               {/* Bottom text */}
               <div style={{ position:'absolute', bottom:0, left:0, right:0, padding:'0 16px 18px' }}>
                 <h3 style={{
-                  fontFamily:"'DM Serif Display',Georgia,serif",
+                  fontFamily:"Inter,-apple-system,sans-serif",
                   fontSize:16, color:'white', margin:'0 0 6px', lineHeight:1.2,
                 }}>{p.title}</h3>
 
@@ -317,7 +318,7 @@ export default function POCProjects() {
             </p>
           </div>
           <button onClick={() => window.registerFor('project')} style={{
-            background:'#00c9a7', color:'#0a0f1e', border:'none', cursor:'pointer',
+            background:'#00c9a7', color:'#1d1d1f', border:'none', cursor:'pointer',
             padding:'12px 28px', borderRadius:24, fontSize:13, fontWeight:700,
             fontFamily:"Inter,-apple-system,sans-serif", transition:'all 0.2s', whiteSpace:'nowrap',
           }}
@@ -335,14 +336,19 @@ export default function POCProjects() {
 
       {/* Mobile responsive */}
       <style>{`
-        @media(max-width:900px){
-          #poc > div > div:nth-child(2){
-            grid-template-columns: repeat(2,1fr) !important;
-          }
+        @media (max-width: 900px) {
+          #poc-cards-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          #poc-lightbox-modal { grid-template-columns: 1fr !important; }
         }
-        @media(max-width:600px){
-          #poc > div > div:nth-child(2){
-            grid-template-columns: 1fr !important;
+        @media (max-width: 600px) {
+          #poc-cards-grid { grid-template-columns: 1fr !important; }
+          #poc-inner { padding: 0 20px !important; }
+          #poc-lightbox-modal {
+            max-height: 92vh !important;
+            overflow-y: auto !important;
+          }
+          #poc-lightbox-modal > div:first-child {
+            min-height: 220px !important;
           }
         }
       `}</style>

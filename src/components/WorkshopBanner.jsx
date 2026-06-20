@@ -6,7 +6,7 @@ export default function WorkshopBanner() {
 
   return (
     <div style={{
-      background: 'linear-gradient(90deg, #0071e3, #00c9a7)',
+      background: 'linear-gradient(90deg, #0066cc, #00c9a7)',
       padding: '10px 16px',
       position: 'relative',
       zIndex: 60,
@@ -20,7 +20,7 @@ export default function WorkshopBanner() {
           🤖 AI in Healthcare Workshop — 17 July, IITM Research Park
         </span>
         <a href="/workshop-july18" style={{
-          background: 'white', color: '#0071e3',
+          background: 'white', color: '#0066cc',
           fontSize: 12, fontWeight: 700,
           padding: '5px 16px', borderRadius: 20,
           textDecoration: 'none',

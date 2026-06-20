@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
           <div className="lg:col-span-2">
             <div className="mb-3">
-              <NeuraLogo variant="white" height={34} />
+              <NeuraLogo variant="white" height={68} />
             </div>
             <p className="text-white/40 text-xs tracking-widest uppercase mb-5">Affordable Intelligence</p>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs mb-5">

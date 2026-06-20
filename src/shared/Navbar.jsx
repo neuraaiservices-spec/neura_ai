@@ -37,15 +37,15 @@ export default function Navbar() {
   return (
     <header style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-      background: scrolled ? 'rgba(10,15,30,0.97)' : 'rgba(10,15,30,1)',
+      background: scrolled ? 'rgba(29,29,31,0.97)' : 'rgba(29,29,31,1)',
       backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
       WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
       borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : '1px solid rgba(255,255,255,0.04)',
       transition: 'all 0.3s ease',
     }}>
-      <div style={{
+      <div id="navbar-inner" style={{
         maxWidth: 1280, margin: '0 auto',
-        padding: '0 40px', height: 52,
+        padding: '0 40px', height: 92,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         {/* Logo */}
@@ -54,7 +54,7 @@ export default function Navbar() {
           style={{ background:'none', border:'none', cursor:'pointer', padding:'4px 0', display:'flex', alignItems:'center' }}
           aria-label="Neura AI Home"
         >
-          <NeuraLogo variant="white" height={32} />
+          <NeuraLogo variant="white" height={64} />
         </button>
 
         {/* Desktop nav — Apple style: small, centered, light */}
@@ -85,7 +85,7 @@ export default function Navbar() {
           onClick={() => scrollTo('register')}
           className="hidden lg:flex"
           style={{
-            background: '#0071e3', color: '#fff',
+            background: '#0066cc', color: '#fff',
             border: 'none', cursor: 'pointer',
             padding: '8px 20px', borderRadius: 20,
             fontSize: 13, fontWeight: 600,
@@ -93,8 +93,8 @@ export default function Navbar() {
             letterSpacing: '0.01em',
             transition: 'background 0.2s',
           }}
-          onMouseEnter={e => e.target.style.background = '#2997ff'}
-          onMouseLeave={e => e.target.style.background = '#0071e3'}
+          onMouseEnter={e => e.target.style.background = '#147ce5'}
+          onMouseLeave={e => e.target.style.background = '#0066cc'}
         >
           Register Now
         </button>
@@ -120,7 +120,7 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity:0, y:-8 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-8 }}
             style={{
-              background: 'rgba(10,15,30,0.99)',
+              background: 'rgba(29,29,31,0.99)',
               borderTop: '1px solid rgba(255,255,255,0.07)',
             }}
           >
@@ -143,7 +143,7 @@ export default function Navbar() {
               <button
                 onClick={() => scrollTo('register')}
                 style={{
-                  marginTop:12, background:'#0071e3', color:'white',
+                  marginTop:12, background:'#0066cc', color:'white',
                   border:'none', cursor:'pointer',
                   padding:'14px 20px', borderRadius:20,
                   fontSize:15, fontWeight:600,
@@ -156,6 +156,12 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style>{`
+        @media (max-width: 480px) {
+          #navbar-inner { padding: 0 16px !important; }
+        }
+      `}</style>
     </header>
   );
 }

@@ -70,10 +70,10 @@ export default function Register() {
   const inp = {
     width:'100%', background:'#f5f5f7', border:'1px solid rgba(0,0,0,0.1)',
     borderRadius:10, padding:'11px 14px', fontSize:13,
-    fontFamily:"Inter,-apple-system,sans-serif", color:'#0a0f1e',
+    fontFamily:"Inter,-apple-system,sans-serif", color:'#1d1d1f',
     outline:'none', transition:'border-color 0.2s',
   };
-  const inpFocus = { borderColor:'#0071e3' };
+  const inpFocus = { borderColor:'#0066cc' };
 
   return (
     <section id="register" className="py-20 lg:py-28 bg-primary">
@@ -93,7 +93,9 @@ export default function Register() {
             <ul style={{display:'flex',flexDirection:'column',gap:12,marginBottom:32}}>
               {TRUST.map(t=>(
                 <li key={t} style={{display:'flex',alignItems:'flex-start',gap:10}}>
-                  <span style={{color:'#00c9a7',marginTop:2,flexShrink:0,fontSize:14}}>✓</span>
+                  <span style={{color:'#00c9a7',marginTop:2,flexShrink:0}}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  </span>
                   <span style={{color:'rgba(255,255,255,0.5)',fontSize:13,fontFamily:"Inter,-apple-system,sans-serif"}}>{t}</span>
                 </li>
               ))}
@@ -125,16 +127,16 @@ export default function Register() {
                 <p style={{fontSize:10,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.1em',color:'#6e6e73',marginBottom:10,fontFamily:"Inter,-apple-system,sans-serif"}}>
                   Select Program *
                 </p>
-                <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8}}>
+                <div id="program-pills-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8}}>
                   {PROGRAMS.map(p=>(
                     <button key={p.id} type="button" onClick={()=>setSelected(p.id)} style={{
                       textAlign:'left',padding:'10px 12px',borderRadius:12,cursor:'pointer',
-                      border: selected===p.id ? '2px solid #0071e3' : '1.5px solid rgba(0,0,0,0.1)',
-                      background: selected===p.id ? 'rgba(0,113,227,0.05)' : 'white',
+                      border: selected===p.id ? '2px solid #0066cc' : '1.5px solid rgba(0,0,0,0.1)',
+                      background: selected===p.id ? 'rgba(0,102,204,0.05)' : 'white',
                       transition:'all 0.15s',
                     }}>
                       <div style={{fontSize:16,marginBottom:3}}>{p.icon}</div>
-                      <div style={{fontSize:11,fontWeight:700,color:selected===p.id?'#0071e3':'#0a0f1e',fontFamily:"Inter,-apple-system,sans-serif",lineHeight:1.2,marginBottom:2}}>{p.label}</div>
+                      <div style={{fontSize:11,fontWeight:700,color:selected===p.id?'#0066cc':'#1d1d1f',fontFamily:"Inter,-apple-system,sans-serif",lineHeight:1.2,marginBottom:2}}>{p.label}</div>
                       <div style={{fontSize:10,color:'#6e6e73',fontFamily:"Inter,-apple-system,sans-serif"}}>{p.sub}</div>
                     </button>
                   ))}
@@ -142,7 +144,7 @@ export default function Register() {
               </div>
 
               <form onSubmit={submit} style={{display:'flex',flexDirection:'column',gap:12}}>
-                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
+                <div className="form-row-grid" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
                   <div>
                     <label style={{fontSize:10,fontWeight:600,textTransform:'uppercase',letterSpacing:'0.07em',color:'#6e6e73',display:'block',marginBottom:5,fontFamily:"Inter,-apple-system,sans-serif"}}>First Name *</label>
                     <input name="firstName" value={form.firstName} onChange={update} required placeholder="First name" style={inp}
@@ -154,7 +156,7 @@ export default function Register() {
                       onFocus={e=>Object.assign(e.target.style,inpFocus)} onBlur={e=>e.target.style.borderColor='rgba(0,0,0,0.1)'}/>
                   </div>
                 </div>
-                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
+                <div className="form-row-grid" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
                   <div>
                     <label style={{fontSize:10,fontWeight:600,textTransform:'uppercase',letterSpacing:'0.07em',color:'#6e6e73',display:'block',marginBottom:5,fontFamily:"Inter,-apple-system,sans-serif"}}>Email *</label>
                     <input name="email" type="email" value={form.email} onChange={update} required placeholder="you@email.com" style={inp}
@@ -166,7 +168,7 @@ export default function Register() {
                       onFocus={e=>Object.assign(e.target.style,inpFocus)} onBlur={e=>e.target.style.borderColor='rgba(0,0,0,0.1)'}/>
                   </div>
                 </div>
-                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
+                <div className="form-row-grid" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
                   <div>
                     <label style={{fontSize:10,fontWeight:600,textTransform:'uppercase',letterSpacing:'0.07em',color:'#6e6e73',display:'block',marginBottom:5,fontFamily:"Inter,-apple-system,sans-serif"}}>College *</label>
                     <input name="college" value={form.college} onChange={update} required placeholder="College name" style={inp}
@@ -178,7 +180,7 @@ export default function Register() {
                       onFocus={e=>Object.assign(e.target.style,inpFocus)} onBlur={e=>e.target.style.borderColor='rgba(0,0,0,0.1)'}/>
                   </div>
                 </div>
-                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
+                <div className="form-row-grid" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
                   <div>
                     <label style={{fontSize:10,fontWeight:600,textTransform:'uppercase',letterSpacing:'0.07em',color:'#6e6e73',display:'block',marginBottom:5,fontFamily:"Inter,-apple-system,sans-serif"}}>City *</label>
                     <input name="city" value={form.city} onChange={update} required placeholder="Your city" style={inp}
@@ -204,13 +206,13 @@ export default function Register() {
                     onFocus={e=>Object.assign(e.target.style,inpFocus)} onBlur={e=>e.target.style.borderColor='rgba(0,0,0,0.1)'}/>
                 </div>
                 <button type="submit" disabled={submitting} style={{
-                  width:'100%',background:'#0a0f1e',color:'white',border:'none',cursor:'pointer',
+                  width:'100%',background:'#1d1d1f',color:'white',border:'none',cursor:'pointer',
                   padding:'15px',borderRadius:12,fontSize:14,fontWeight:700,
                   fontFamily:"Inter,-apple-system,sans-serif",marginTop:4,
                   transition:'all 0.2s', opacity: submitting ? 0.6 : 1,
                 }}
-                  onMouseEnter={e=>{ if(!submitting) e.currentTarget.style.background='#0071e3'; }}
-                  onMouseLeave={e=>{ e.currentTarget.style.background='#0a0f1e'; }}>
+                  onMouseEnter={e=>{ if(!submitting) e.currentTarget.style.background='#0066cc'; }}
+                  onMouseLeave={e=>{ e.currentTarget.style.background='#1d1d1f'; }}>
                   {submitting ? 'Submitting...' : `Submit — ${PROGRAMS.find(p=>p.id===selected)?.label || 'Register'} →`}
                 </button>
                 {message && (
@@ -226,6 +228,14 @@ export default function Register() {
           </motion.div>
         </div>
       </div>
+
+      {/* Mobile responsive */}
+      <style>{`
+        @media (max-width: 480px) {
+          #program-pills-grid { grid-template-columns: 1fr 1fr !important; }
+          .form-row-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }
