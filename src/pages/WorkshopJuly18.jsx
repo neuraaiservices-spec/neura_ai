@@ -168,7 +168,7 @@ export default function WorkshopJuly18() {
             background:'#f5f5f7',
           }}>
           {[
-            {icon:'📅', label:'Date', value:'17 July, Sat'},
+            {icon:'📅', label:'Date', value:'18 July, Sat'},
             {icon:'⏰', label:'Time', value:'9 AM – 4 PM'},
             {icon:'📍', label:'Venue', value:'IITM Research Park'},
             {icon:'💻', label:'Format', value:'Hybrid'},
@@ -274,7 +274,7 @@ export default function WorkshopJuly18() {
           style={{maxWidth:640, margin:'0 auto'}}>
           <div style={{textAlign:'center', marginBottom:26}}>
             <p style={{fontFamily:"Inter,-apple-system,sans-serif", fontWeight:700, letterSpacing:'-0.02em', fontSize:25, color:'#1d1d1f', marginBottom:8}}>Reserve your seat</p>
-            <p style={{color:'#6e6e73', fontSize:13.5, fontFamily:"Inter,-apple-system,sans-serif"}}>17 July · IITM Research Park · ₹1,000</p>
+            <p style={{color:'#6e6e73', fontSize:13.5, fontFamily:"Inter,-apple-system,sans-serif"}}>18 July · IITM Research Park · ₹1,000</p>
           </div>
 
           <div style={{
