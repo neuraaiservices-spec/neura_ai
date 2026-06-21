@@ -65,7 +65,7 @@ const events = [
   {
     tag: 'Seminar',
     title: 'Artificial Intelligence in Healthcare',
-    college: 'Karpagam Academy of Higher Education',
+    college: 'sree sastha institute of engineering and technology',
     location: 'Coimbatore, TN',
     desc: 'Faculty of Engineering, Dept. of Biomedical Engineering seminar on AI opportunities.',
     img: evKarpagam,
