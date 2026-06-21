@@ -6,10 +6,11 @@ import evJaundice1   from '../assets/ev_jaundice1.jpg';
 import evJaundice2   from '../assets/ev_jaundice2.jpg';
 import evHindusthan  from '../assets/ev_hindusthan.jpg';
 import evSmit        from '../assets/ev_smit.jpg';
-import evSreeSastha  from '../assets/ev_sreesastha.jpg';
-import technicalworkshop from '../assets/ev_rndtraining.jpg';
+import RnDinternship  from '../assets/ev_sreesastha.jpg';
+import evRndTraining from '../assets/ev_rndtraining.jpg';
 import evKarpagam    from '../assets/ev_karpagam.jpg';
-import RnDinernship from '../assets/ev_sreesastha.jpg';
+
+
 const categories = ['All', 'Workshop', 'Seminar', 'R&D Training', 'Live Projects'];
 
 const events = [
@@ -29,7 +30,6 @@ const events = [
     desc: 'Students & faculty collaborated on AI-based jaundice screening device with vital sign monitoring.',
     img: evJaundice2,
   },
-  
   {
     tag: 'Seminar',
     title: 'Healthcare R&D & AI Seminar',
@@ -47,30 +47,21 @@ const events = [
     img: evSmit,
   },
   {
-    tag: 'Seminar',
-    title: 'Healthcare R&D Seminar',
-    college: 'Sree Sastha Institute of Engineering & Technology',
-    location: 'Chennai, TN',
-    desc: 'Online seminar for students across departments on R&D careers in healthcare.',
-    img: evKarpagam ,
+    tag: 'Merit based R&D Internship',
+    title: 'Merit based R&D Internship',
+    college: 'IIT,CIT,SSN,Sathyabama,SRMIT,SRM eswari and others',
+    location: 'India',
+    desc: 'Merit based R&D Internship',
+    img: RnDinternship,
   },
   {
-    tag: 'Python & Image Processing in Healthcare workshop',
-    title: 'Python & Image Processing in Healthcare workshop',
+    tag: 'Technical online workshop',
+    title: 'Python & Image Processing in Healthcare',
     college: 'Multiple Colleges (Online)',
     location: 'Pan India · Online',
     desc: 'Live cloud R&D training — X-ray image processing with OpenCV. Students from SRM, VCET & Valliammai.',
     img: evRndTraining,
   },
-  {
-    tag: 'Merit based R&D Internship',
-    title: 'Merit based R&D Internship',
-    college: 'CIT,Sathyabama,SSN,IIT',
-    location: 'India',
-    desc: 'Biomedical engineering students interned and worked on the development of useful medical solutions',
-    img: RnDinernship ,
-  },
-
   {
     tag: 'Seminar',
     title: 'Artificial Intelligence in Healthcare',
