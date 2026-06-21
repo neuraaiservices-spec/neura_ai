@@ -37,15 +37,15 @@ export default function Navbar() {
   return (
     <header style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-      background: scrolled ? 'rgba(29,29,31,0.97)' : 'rgba(29,29,31,1)',
-      backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
-      WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
-      borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : '1px solid rgba(255,255,255,0.04)',
+      background: scrolled ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.7)',
+      backdropFilter: 'blur(20px) saturate(180%)',
+      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+      borderBottom: scrolled ? '1px solid rgba(0,0,0,0.07)' : '1px solid rgba(0,0,0,0.02)',
       transition: 'all 0.3s ease',
     }}>
       <div id="navbar-inner" style={{
         maxWidth: 1280, margin: '0 auto',
-        padding: '0 40px', height: 92,
+        padding: '0 40px', height: 64,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         {/* Logo */}
@@ -54,10 +54,10 @@ export default function Navbar() {
           style={{ background:'none', border:'none', cursor:'pointer', padding:'4px 0', display:'flex', alignItems:'center' }}
           aria-label="Neura AI Home"
         >
-          <NeuraLogo variant="white" height={64} />
+          <NeuraLogo variant="dark" height={32} />
         </button>
 
-        {/* Desktop nav — Apple style: small, centered, light */}
+        {/* Desktop nav — Apple style: small, centered, dark text on light bar */}
         <nav style={{ display:'flex', alignItems:'center', gap: 4 }} className="hidden lg:flex">
           {navLinks.map(link => (
             <button
@@ -69,11 +69,11 @@ export default function Navbar() {
                 fontSize: 13, fontWeight: 500,
                 fontFamily: "Inter, -apple-system, sans-serif",
                 letterSpacing: '0.01em',
-                color: active === link.id ? '#00c9a7' : 'rgba(255,255,255,0.65)',
+                color: active === link.id ? '#0066cc' : 'rgba(29,29,31,0.7)',
                 transition: 'color 0.2s',
               }}
-              onMouseEnter={e => { if(active !== link.id) e.target.style.color = 'rgba(255,255,255,0.95)'; }}
-              onMouseLeave={e => { if(active !== link.id) e.target.style.color = 'rgba(255,255,255,0.65)'; }}
+              onMouseEnter={e => { if(active !== link.id) e.target.style.color = '#1d1d1f'; }}
+              onMouseLeave={e => { if(active !== link.id) e.target.style.color = 'rgba(29,29,31,0.7)'; }}
             >
               {link.label}
             </button>
@@ -103,7 +103,7 @@ export default function Navbar() {
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden"
-          style={{ background:'none', border:'none', cursor:'pointer', color:'white', padding:8 }}
+          style={{ background:'none', border:'none', cursor:'pointer', color:'#1d1d1f', padding:8 }}
           aria-label="Menu"
         >
           <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,8 +120,8 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity:0, y:-8 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-8 }}
             style={{
-              background: 'rgba(29,29,31,0.99)',
-              borderTop: '1px solid rgba(255,255,255,0.07)',
+              background: 'rgba(255,255,255,0.98)',
+              borderTop: '1px solid rgba(0,0,0,0.07)',
             }}
           >
             <div style={{ padding: '16px 24px', display:'flex', flexDirection:'column', gap:4 }}>
@@ -134,7 +134,7 @@ export default function Navbar() {
                     padding:'12px 16px', borderRadius:12,
                     fontSize:15, fontWeight:500,
                     fontFamily:"Inter, -apple-system, sans-serif",
-                    color: active === link.id ? '#00c9a7' : 'rgba(255,255,255,0.7)',
+                    color: active === link.id ? '#0066cc' : 'rgba(29,29,31,0.75)',
                   }}
                 >
                   {link.label}

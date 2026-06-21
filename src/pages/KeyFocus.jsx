@@ -39,7 +39,7 @@ export default function KeyFocus() {
   };
 
   return (
-    <section id="focus" style={{ padding: '80px 0', background: '#1d1d1f', overflow: 'hidden' }}>
+    <section id="focus" style={{ padding: '80px 0', background: '#ffffff', overflow: 'hidden' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px' }}>
 
         {/* Header */}
@@ -47,15 +47,15 @@ export default function KeyFocus() {
           style={{ marginBottom: 32 }}>
           <span style={{
             display: 'inline-block', fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase',
-            color: '#00c9a7', background: 'rgba(0,201,167,0.1)', padding: '5px 14px', borderRadius: 20,
+            color: '#00a688', background: 'rgba(0,201,167,0.1)', padding: '5px 14px', borderRadius: 20,
             marginBottom: 16, fontFamily: "Inter,-apple-system,sans-serif",
           }}>Research Focus Areas</span>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
             <h2 style={{
               fontFamily: "Inter,-apple-system,sans-serif", fontWeight: 800, letterSpacing: '-0.03em',
-              fontSize: 'clamp(28px,3.5vw,48px)', color: 'white', lineHeight: 1.08, margin: 0, maxWidth: 480,
+              fontSize: 'clamp(28px,3.5vw,48px)', color: '#1d1d1f', lineHeight: 1.08, margin: 0, maxWidth: 480,
             }}>What we're building solutions for.</h2>
-            <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: 14, maxWidth: 280, margin: 0, fontFamily: "Inter,-apple-system,sans-serif", fontWeight: 300 }}>
+            <p style={{ color: '#6e6e73', fontSize: 14, maxWidth: 280, margin: 0, fontFamily: "Inter,-apple-system,sans-serif", fontWeight: 300 }}>
               Medical areas we work in.
             </p>
           </div>
@@ -85,8 +85,8 @@ export default function KeyFocus() {
             </button>
           )}
 
-          <div style={{ position: 'absolute', left: 0, top: 24, bottom: 24, width: 60, background: 'linear-gradient(to right, #1d1d1f, transparent)', zIndex: 30, pointerEvents: 'none', opacity: canLeft ? 1 : 0, transition: 'opacity 0.3s' }} />
-          <div style={{ position: 'absolute', right: 0, top: 24, bottom: 24, width: 60, background: 'linear-gradient(to left, #1d1d1f, transparent)', zIndex: 30, pointerEvents: 'none', opacity: canRight ? 1 : 0, transition: 'opacity 0.3s' }} />
+          <div style={{ position: 'absolute', left: 0, top: 24, bottom: 24, width: 60, background: 'linear-gradient(to right, #ffffff, transparent)', zIndex: 30, pointerEvents: 'none', opacity: canLeft ? 1 : 0, transition: 'opacity 0.3s' }} />
+          <div style={{ position: 'absolute', right: 0, top: 24, bottom: 24, width: 60, background: 'linear-gradient(to left, #ffffff, transparent)', zIndex: 30, pointerEvents: 'none', opacity: canRight ? 1 : 0, transition: 'opacity 0.3s' }} />
 
           {/* Scroll track — overflow visible vertically so hovered card can grow past row bounds */}
           <div

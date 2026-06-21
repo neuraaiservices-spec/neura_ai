@@ -97,7 +97,7 @@ export default function Loader() {
       ctx.beginPath(); ctx.arc(cx,cy,8,0,Math.PI*2);
       ctx.fillStyle = '#00c9a7'; ctx.fill();
       ctx.beginPath(); ctx.arc(cx,cy,4,0,Math.PI*2);
-      ctx.fillStyle = 'white'; ctx.fill();
+      ctx.fillStyle = '#ffffff'; ctx.fill();
 
       // Satellite dots
       sats.forEach((s,i) => {
@@ -105,13 +105,13 @@ export default function Loader() {
         const isTeal = i % 2 === 0;
         // Glow
         const sg = ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,pulse*3);
-        sg.addColorStop(0,isTeal?'rgba(0,201,167,0.3)':'rgba(255,255,255,0.15)');
+        sg.addColorStop(0,isTeal?'rgba(0,201,167,0.3)':'rgba(0,102,204,0.18)');
         sg.addColorStop(1,'rgba(0,0,0,0)');
         ctx.beginPath(); ctx.arc(s.x,s.y,pulse*3,0,Math.PI*2);
         ctx.fillStyle=sg; ctx.fill();
         // Core
         ctx.beginPath(); ctx.arc(s.x,s.y,pulse,0,Math.PI*2);
-        ctx.fillStyle = isTeal ? '#00c9a7' : 'rgba(255,255,255,0.8)';
+        ctx.fillStyle = isTeal ? '#00c9a7' : 'rgba(0,102,204,0.55)';
         ctx.fill();
       });
 
@@ -123,7 +123,7 @@ export default function Loader() {
 
   return (
     <div style={{
-      position:'fixed', inset:0, background:'#1d1d1f',
+      position:'fixed', inset:0, background:'#ffffff',
       display:'flex', flexDirection:'column',
       alignItems:'center', justifyContent:'center', zIndex:9999,
     }}>
@@ -131,24 +131,24 @@ export default function Loader() {
       <canvas ref={canvasRef} style={{display:'block', marginBottom:32}} />
 
       {/* Logo */}
-      <NeuraLogo variant="white" height={76} />
+      <NeuraLogo variant="dark" height={48} />
 
       {/* Phase text */}
       <p style={{
         fontFamily:"Inter,-apple-system,sans-serif",
-        color:'rgba(0,201,167,0.5)', fontSize:10,
+        color:'#00a688', fontSize:10,
         letterSpacing:'0.18em', textTransform:'uppercase',
         marginTop:8, marginBottom:28, fontWeight:500,
         minHeight:14, transition:'opacity 0.5s',
       }}>{phases[phase]}</p>
 
       {/* Progress bar */}
-      <div style={{width:160,height:1.5,background:'rgba(255,255,255,0.07)',borderRadius:2,overflow:'hidden'}}>
+      <div style={{width:160,height:1.5,background:'rgba(0,0,0,0.08)',borderRadius:2,overflow:'hidden'}}>
         <div style={{
           height:'100%', borderRadius:2,
           background:'linear-gradient(90deg,#0066cc,#00c9a7)',
           width:`${progress}%`, transition:'width 30ms linear',
-          boxShadow:'0 0 10px rgba(0,201,167,0.6)',
+          boxShadow:'0 0 10px rgba(0,201,167,0.4)',
         }}/>
       </div>
     </div>

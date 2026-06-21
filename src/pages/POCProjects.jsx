@@ -185,7 +185,7 @@ export default function POCProjects() {
   const [lightbox, setLightbox] = useState(null);
 
   return (
-    <section id="poc" style={{ padding: '96px 0', background: '#1d1d1f' }}>
+    <section id="poc" style={{ padding: '96px 0', background: '#ffffff' }}>
       <div id="poc-inner" style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px' }}>
 
         {/* Header — factual, not salesy */}
@@ -200,10 +200,10 @@ export default function POCProjects() {
           <div style={{ display:'flex', flexDirection:'column', gap:8, marginBottom:12 }}>
             <h2 style={{
               fontFamily:"Inter,-apple-system,sans-serif",
-              fontSize:'clamp(28px,3.5vw,48px)', color:'white', lineHeight:1.1, margin:0,
+              fontSize:'clamp(28px,3.5vw,48px)', color:'#1d1d1f', lineHeight:1.1, margin:0,
             }}>Developed by Neura AI</h2>
             <p style={{
-              color:'rgba(255,255,255,0.4)', fontSize:14, maxWidth:480,
+              color:'#6e6e73', fontSize:14, maxWidth:480,
               lineHeight:1.7, fontFamily:"Inter,-apple-system,sans-serif", fontWeight:300,
             }}>
               Working prototypes developed by Neura AI. Each addresses a real clinical problem with hardware and software.
@@ -228,7 +228,7 @@ export default function POCProjects() {
               style={{
                 position:'relative', borderRadius:16, overflow:'hidden',
                 aspectRatio:'4/3', cursor:'pointer',
-                border: hovered===i ? '1px solid rgba(0,201,167,0.35)' : '1px solid rgba(255,255,255,0.06)',
+                border: hovered===i ? '1px solid rgba(0,201,167,0.4)' : '1px solid rgba(0,0,0,0.08)',
                 transform: hovered===i ? 'translateY(-4px)' : 'translateY(0)',
                 boxShadow: hovered===i ? '0 20px 48px rgba(0,0,0,0.5)' : '0 4px 16px rgba(0,0,0,0.3)',
                 transition: 'all 0.3s ease',
@@ -304,26 +304,26 @@ export default function POCProjects() {
         <motion.div initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true}} transition={{delay:0.3}}
           style={{
             marginTop:40, padding:'28px 32px',
-            border:'1px solid rgba(255,255,255,0.06)', borderRadius:16,
+            border:'1px solid rgba(0,0,0,0.08)', borderRadius:16,
             display:'flex', alignItems:'center', justifyContent:'space-between',
             flexWrap:'wrap', gap:16,
-            background:'rgba(255,255,255,0.02)',
+            background:'#f5f5f7',
           }}>
           <div>
-            <p style={{color:'white',fontSize:14,fontWeight:600,fontFamily:"Inter,-apple-system,sans-serif",marginBottom:4}}>
+            <p style={{color:'#1d1d1f',fontSize:14,fontWeight:600,fontFamily:"Inter,-apple-system,sans-serif",marginBottom:4}}>
               Have a clinical problem to solve?
             </p>
-            <p style={{color:'rgba(255,255,255,0.4)',fontSize:13,fontFamily:"Inter,-apple-system,sans-serif",fontWeight:300}}>
+            <p style={{color:'#6e6e73',fontSize:13,fontFamily:"Inter,-apple-system,sans-serif",fontWeight:300}}>
               Tell us the problem. We'll assess whether we can build a solution.
             </p>
           </div>
           <button onClick={() => window.registerFor('project')} style={{
-            background:'#00c9a7', color:'#1d1d1f', border:'none', cursor:'pointer',
+            background:'#1d1d1f', color:'white', border:'none', cursor:'pointer',
             padding:'12px 28px', borderRadius:24, fontSize:13, fontWeight:700,
             fontFamily:"Inter,-apple-system,sans-serif", transition:'all 0.2s', whiteSpace:'nowrap',
           }}
-            onMouseEnter={e=>{e.currentTarget.style.background='white';}}
-            onMouseLeave={e=>{e.currentTarget.style.background='#00c9a7';}}>
+            onMouseEnter={e=>{e.currentTarget.style.background='#0066cc';}}
+            onMouseLeave={e=>{e.currentTarget.style.background='#1d1d1f';}}>
             Start a Project
           </button>
         </motion.div>
