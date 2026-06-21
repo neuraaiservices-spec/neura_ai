@@ -17,7 +17,7 @@ export default function WorkshopBanner() {
         gap: 12, flexWrap: 'wrap', textAlign: 'center',
       }}>
         <span style={{ fontSize: 13, fontWeight: 600, color: 'white', fontFamily: "Inter,-apple-system,sans-serif" }}>
-          🤖 AI in Healthcare Workshop — 17 July, IITM Research Park
+          🤖 AI in Healthcare Workshop — 18 July, IITM Research Park
         </span>
         <a href="/workshop-july18" style={{
           background: 'white', color: '#0066cc',
